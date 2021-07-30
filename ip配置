@@ -1,0 +1,22 @@
+Ubuntu 20.04配置ip地址：
+vim /etc/netplan/00-installer-config.yaml
+i
+dhcp4: no
+dhcp6: no
+addresses: [x.x.x.x/24]
+gateway4: x.x.x.x
+nameservers:
+      addresses: [x.x.x.x,x.x.x.x]
+
+Esc:wq!
+netplan apply
+
+apt install openssh-server
+vim /etc/ssh/sshd_config
+i
+permitrootlogin yes
+Strictmodes yes
+Esc:wq!
+service ssh restart
+
+tar xvf xxx.tar.gz
