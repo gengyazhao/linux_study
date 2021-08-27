@@ -1,0 +1,14 @@
+使用权限：所有使用者 
+使用方式：cat [-AbeEnstTuv] [--help] [--version] fileName 
+说明：把档案串连接后传到基本输出（萤幕或加 > fileName 到另一个档案）
+参数：
+-n 或 --number 由 1 开始对所有输出的行数编号
+-b 或 --number-nonblank 和 -n 相似，只不过对于空白行不编号
+-s 或 --squeeze-blank 当遇到有连续两行以上的空白行，就代换为一行的空白行
+-v 或 --show-nonprinting
+范例：
+cat -n textfile1 > textfile2 
+把 textfile1 的档案内容加上行号后输入 textfile2 这个档案里
+
+cat -b textfile1 textfile2 >> textfile3 
+把 textfile1 和 textfile2 的档案内容加上行号（空白行不加）之后将内容附加到 textfile3 里。
