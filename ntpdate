@@ -1,0 +1,23 @@
+ntpdate -u x.x.x.x
+添加路由
+cd /etc/sysconfig/network/
+vi routes
+i
+network next_hop mask
+ESC:wq!
+service network restart
+
+#!/bin/bash
+p1=/export/SslOption.xml
+sed -i 's/TLSv1.3/TLSv1.2/' $p1
+grep -r 'value="TLSv1.3' /export/home
+
+
+
+
+#!/bin/bash
+echo "please input adaptation layer name"
+read adaptation_layer_name
+. /opt/profile.sh
+cd /export/
+installmed.sh $adaptation_layer_name
