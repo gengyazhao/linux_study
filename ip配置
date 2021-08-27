@@ -20,3 +20,16 @@ Esc:wq!
 service ssh restart
 
 tar xvf xxx.tar.gz
+
+
+初始设置root密码：
+passwd root
+password_for_current_user
+password_for_root
+retype_password_for_root
+
+切换root用户
+su root
+
+查询网卡地址
+ip add
