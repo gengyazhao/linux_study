@@ -1,0 +1,12 @@
+临时显示行号
+命令模式下输入：set nu +enter
+
+查找vimrc
+find / -name '*vimrc'
+
+永久显示行号
+cd /etc
+vi vimrc
+set number(添加一行)
+
+route add -net 192.168.4.0/24 gw 192.168.3.100
