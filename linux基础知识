@@ -1,0 +1,28 @@
+列出当前目录下的所有文件和子目录
+ls -al
+
+打开六个Terminal
+ALT + F1——F6
+
+取消一个已经运行的shutdown
+shutdown -c
+
+cd后面不加目录，会回到用户的home目录。如果是root用户，则进入/root，与cd ~作用一样。
+.是指当前目录，..是指上一级目录
+
+显示当前目录
+pwd
+
+创建一个用户组
+groupadd group_name
+删除一个用户组
+groupdel group_name
+创建一个用户
+useradd user_name -g main_group -G minor_group -d /home/user_name -p user_passwd
+-g用户的主要组
+-G用户的次要组
+-d指定用户的home目录
+-p用户密码
+
+删除一个用户
+userdel user_name
