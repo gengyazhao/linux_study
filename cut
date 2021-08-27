@@ -1,0 +1,14 @@
+使用权限：所有使用者
+
+用法：cut -cnum1-num2 filename
+
+说明：显示每行从开头算起 num1 到 num2 的文字。
+
+范例：
+
+        shell>> cat example
+        test2
+        this is test1
+        shell>> cut -c0-6 example       ## print 开头算起前 6 个字元
+        test2
+        this i
