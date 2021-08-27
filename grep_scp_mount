@@ -1,0 +1,36 @@
+比如：grep “123” test.log //查看test.log中包含123字符的日志
+
+如果想查看指定内容上下几行，可以用参考下面的用法：
+
+$grep -10 ‘123’ test.log//打印匹配行的前后10行 
+或 
+$grep -C 10 ‘123’ test.log//打印匹配行的前后10行 
+或 
+$ grep -A 10 -B 10 ‘123’ test.log //打印匹配行的前后10行
+
+$grep -A 10 ‘123’ test.log //打印匹配行的后10行
+
+$grep -B 10 ‘123’ test.log//打印匹配行的前10行
+
+grep -r 'value="TLSv1.3' /export/home/ > ../temp.txt
+不能重定向到./temp.txt 重定向到当前文件夹下会导致循环
+
+ubuntu配置多个DNS		多个dns之间用空格分隔
+dns-nameservers x.x.x.x y.y.y.y
+
+
+要安装software-1.2.3-1.i386.rpm这个包时应执行：
+　　rpm –ivh software-1.2.3-1.i386.rpm
+　　而当卸载时，则应执行：
+　　rpm –e software
+
+安装时使用安装包名称，卸载时使用软件名称
+
+
+将windowsx.x.x.x下d:盘文件夹0gyz挂载到linux
+mkdir /export/ossuser/U2020
+mount -t cifs -o username=user,password=password //x.x.x.x/U2020 /export/ossuser/U2020
+
+
+从source向distination拷贝适配层,跳过重复不覆盖
+scp -r /export/home/mediation/ user@distination_ip:/export/home/
