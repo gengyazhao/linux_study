@@ -7,7 +7,7 @@ ALT + F1——F6
 取消一个已经运行的shutdown
 shutdown -c
 
-cd后面不加目录，会回到用户的home目录。如果是root用户，则进入/root，与cd ~作用一样。
+cd后面不加目录，会回到用户的home目录。如果是root用户，则进入/root，与cd ~或者cd #作用一样。
 .是指当前目录，..是指上一级目录
 
 显示当前目录
