@@ -38,3 +38,13 @@ exit 0
 
 [root@linux]$ ./Example3-2.sh
 Usage:'basename ./Example3-2.sh' rpm-file
+[root@linux]$ ./Example3-2.sh dir.txt
+Results of rpm test in file dir.txt.test
+[root@linux]$ cat dir.txt.test
+
+Archive Description:
+
+Archive Listing:
+
+/var/log: not an rpm package (or package manifest): Is a directory
+dir.txt cannot be installed.
