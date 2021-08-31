@@ -1,3 +1,10 @@
+#win10文件夹挂载到linux上
+#共享win10上文件夹
+#创建linux上挂载文件夹
+mount -t cifs -o username=xxx,password=xxx //x.x.x.x/0gyz /export/ossuser/my_dir
+
+
+
 名称 : mount 
 　　使用权限 : 系统管理者或/etc/fstab中允许的使用者 
 　　使用方式 : 
