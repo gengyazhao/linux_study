@@ -1,0 +1,18 @@
+#在一个脚本内后台运行一个命令,有可能造成这个脚本的挂起,等待一个按键响应.
+
+[root@linux]$ cat Example3-3.sh
+#!/bin/bash
+# background-loop
+
+for i in 1 2 3 4 5 6 7 8 9 10
+do
+        echo -n "$i"
+        sleep 1
+done&
+echo
+for i in 11 12 13 14 15 16 17 18 19 20
+do
+        echo -n "$i"
+done
+echo
+exit 0
