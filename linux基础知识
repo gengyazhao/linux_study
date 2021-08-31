@@ -49,3 +49,40 @@ if [ -x "~/Workspace/shell/a.sh" ];then
 只有 -x 后有空格才表示紧跟其后的字符串是否指向一个可执行的文件名，否则就成了测试 -x"~/Workspace/shell/a.sh" 这个字符串是不是空。
 
 7.取变量值的符号'$'和后边的变量或括号不能有空格
+
+
+
+
+在linux中，：是一个空命令，等价于“NOP”（no op ,一个什么也不干的命令），也可以认为与shell的内建命令（True）作用相同。“：”命令是一个bash的内建命令，它的返回值为0，就是shell返回的true。
+#!/bin/bash
+:
+echo $?
+显示为0
+
+:> file
+:和>结合使用，把一个文件截断到0长度，没有修改它的权限。如果文件之前并不存在，则创建它。
+举例：
+[root@linux]$ cat test.sh
+#!/bin/bash
+echo "\$#=$#"
+echo "\$0=$0"
+echo "\$1=$1"
+echo "\$2=$2"
+echo "\$@=$@"
+echo "\$?=$?"
+[root@linux]$ :> test.sh
+[root@linux]$ cat test.sh
+[root@linux]$
+：>的作用与cat /dev/null > file的作用相同。
+
+()命令组，如：
+（a=hello;echo $a）
+在()中的命令列表，将作为一个子shell来运行。
+在()中的变量，由于是在子shell中，所以对于脚本剩下的部分是不可用的。
+
+#把file1，file2,file3,连接在一起，并且重定向到combined_file中
+cat {file1,file2,file3} > combined_file
+
+#拷贝file22.txt到file22.backup中
+cp file22.{txt,backup}
+
