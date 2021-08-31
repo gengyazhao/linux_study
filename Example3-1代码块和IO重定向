@@ -1,0 +1,24 @@
+#代码块和I//O重定向
+[root@linux]$ cat Example3-1.sh
+#!/bin/bash
+#从/etc/fstab中读行
+File=/etc/fstab
+{
+read line1
+read line2
+}< $File
+echo "First line in $File is:"
+echo "$line1"
+echo
+echo "Second line in $File is:"
+echo "$line2"
+exit 0
+
+
+[root@linux]$ ./Example3-1.sh
+First line in /etc/fstab is:
+/dev/disk/by-id/scsi-36101b5442bcc70001ec370b213195b6a-part2 /                    ext3       acl,user_xattr        1 1
+
+Second line in /etc/fstab is:
+/dev/disk/by-id/scsi-36101b5442bcc70001ec370b213195b6a-part4 /opt                 ext3       acl,user_xattr        1 2
+[root@linux]$
