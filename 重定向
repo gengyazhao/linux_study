@@ -1,0 +1,32 @@
+stdout -- 标准输出设备 
+stderr -- 标准错误输出设备
+
+scriptname >filename 重定向脚本的输出到文件中,覆盖文件原有内容.
+command &>filename 重定向stdout 和stderr 到文件中
+command >&2 重定向command 的stdout 到stderr
+scriptname >>filename 重定向脚本的输出到文件中,添加到文件尾端,如果没有文件,则创建这个文件.
+
+[root@linux]$ ./Example3-2.sh dir.txt
+Results of rpm test in file dir.txt.test
+[root@linux]$ cat dir.txt.test
+
+Archive Description:
+
+Archive Listing:
+
+/var/log: not an rpm package (or package manifest): Is a directory
+dir.txt cannot be installed.
+
+
+
+[root@linux]$ ./Example3-2.sh dir.txt &> dir.log
+[root@linux]$ cat dir.log
+Results of rpm test in file dir.txt.test
+
+[root@linux]$ ./Example3-2.sh dir.txt >&2
+Results of rpm test in file dir.txt.test
+
+[root@linux]$ ./Example3-2.sh dir.txt >>dir.log
+[root@linux]$ cat dir.log
+Results of rpm test in file dir.txt.test
+Results of rpm test in file dir.txt.test
