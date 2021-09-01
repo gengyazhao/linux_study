@@ -113,3 +113,45 @@ mount -t cifs -o username=xxx,password=xxx //x.x.x.x/0gyz /export/ossuser/my_dir
 　　
 　　 #mount -o loop /tmp/image.iso /mnt/cdrom 
 　　相关命令umount
+  
+  
+ 
+ 1、将windows系统下0gyz文件夹设置为共享
+ 2、在linux系统下创建挂载点 mkdir /mnt/0gyz
+ 3、windows系统用户名：user1 密码：pwd1
+ 
+
+
+
+[root@linux]$ cd mnt  #进入linux系统挂载目录
+[root@linux]$ ls      #查看已挂载点
+[root@linux]$ mount -t cifs -o username=user1,password=pwd1 //20.20.33.155/0gyz /mnt/0gyz   #尝试挂载，挂载点/mnt/0gyz未创建
+Couldn't chdir to /mnt/0gyz: No such file or directory
+[root@linux]$ mkdir 0gyz    #创建挂载点
+[root@linux]$ ls            #查看挂载点已创建
+0gyz
+[root@linux]$ mount -t cifs -o username=pbalongnw,password=Huawei@2021 //20.20.33.155/0gyz /mnt/0gyz  #再次挂载
+[root@linux]$ ls
+0gyz
+[root@linux]$ cd 0gyz #进入挂载点
+[root@linux]$ ls  #查看挂载文件夹内文件
+0截图                                           Beyond Compare v4.1.3.20814 x86.exe             memo                U2020backup         缩写含义.txt
+0技术文档                                       BTS3900&BTS5900 V100R013C10SPC100 Reference-CN  mysql.TXT           VoLte网元介绍.docx  脚本
+0科锐                                           chm                                             part_Template.xlsx  临时4G脚本.xlsx     资料
+0表格excel                                      chromedriver.exe                                software-exam       交换机.txt.bak      频点转换1.3.rar
+ActiveOfficeToolUI_sign_1.0.0_201708141440.exe  click_me_1.2                                    TDS规避license.txt  备查文档.docx       频点转换工具.exe
+band--Hz.png                                    DataBase.txt                                    temp                新人信息.txt        高危命令列表high_riskerlist(1).xls
+BAND频带和运营商频带.txt                        IPOP.EXE                                        Thumbs.db           练习
+BBU常用配置命令.txt                             IPOP V4.1帮助文档.doc                           TUE.docx            统计.xlsx
+BBU常用配置命令.txt.bak                         lte协议.txt                                     U2020               绩效
+[root@linux]$ umount -nv .  #在挂载文件夹内时，不能卸载
+optind 3 unmount dir /mnt/0gyz
+unmount error 16 = Device or resource busy
+Refer to the umount.cifs(8) manual page (man 8 umount.cifs)
+optind 3 unmount dir /mnt/0gyz
+unmount error 16 = Device or resource busy
+Refer to the umount.cifs(8) manual page (man 8 umount.cifs)
+[root@linux]$ cd .. #退出挂载文件夹
+[root@linux]$ umount -nv 0gyz/  #卸载0gyz文件夹
+optind 3 unmount dir /mnt/0gyz
+umount2 succeeded
