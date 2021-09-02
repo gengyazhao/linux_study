@@ -1,0 +1,16 @@
+[root@linux]$ cat Example3-4.sh
+#!/bin/bash
+#备份最后一天所有修改的文件
+BACKUPFILE=backup-$(date +%m-%d-%Y)
+#在备份文件中嵌入时间
+archive=${1:-$BACKUPFILE}
+tar cvf -'find . -mtime -1 -type f -print' > $archive.tar
+gzip $archive.tar
+echo "Directory $PWD backed up in archive file \"$archive.tar.gz\"."
+exit 0
+
+在shell中，":-"是一个三元运算符
+archive=${1:-$BACKUPFILE}
+$1:代表传入的第一个参数
+如果$1存在并且不为空那么archive=$1，否则archive=$BACKUPFILE
+
