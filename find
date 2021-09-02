@@ -1,7 +1,20 @@
 功能说明：查找文件或目录。
 
-语　　法：find [目录...][-amin <分钟>][-anewer <参考文件或目录>][-atime <24小时数>][-cmin <分钟>][-cnewer <参考文件或目录>][-ctime <24小时数>][-daystart][-depyh][-empty][-exec <执行指令>][-false][-fls <列表文件>][-follow][-fprint <列表文件>][-fprint0 <列表文件>][-fprintf <列表文件><输出格式>][-fstype <文件系统类型>][-gid <群组识别码>][-group <群组名称>][-help][-ilname <范本样式>][-iname <范本样式>][-inum <inode编号>][-ipath <范本样式>][-iregex <范本样式>][-links <连接数目>][-lname <范本样式>][-ls][-maxdepth <目录层级>][-mindepth <目录层级>][-mmin <分钟>][-mount] 
-[-mtime <24小时数>][-name <范本样式>][-newer <参考文件或目录>][-nogroup][noleaf] [-nouser][-ok <执行指令>][-path <范本样式>][-perm <权限数值>][-print][-print0][-printf <输出格式>][-prune][-regex <范本样式>][-size <文件大小>][-true][-type <文件类型>][-uid <用户识别码>][-used <日数>][-user <拥有者名称>][-version][-xdev][-xtype <文件类型>]
+语　　法：
+find   path   -option   [   -print ]   [ -exec   -ok   command ]   {} \;
+
+find [目录...] [-amin <分钟>] [-anewer <参考文件或目录>] [-atime <24小时数>]
+[-cmin <分钟>] [-cnewer <参考文件或目录>] [-ctime <24小时数>] [-daystart]
+[-depyh] [-empty] [-exec <执行指令>] [-false] [-fls <列表文件>] [-follow]
+[-fprint <列表文件>] [-fprint0 <列表文件>] [-fprintf <列表文件><输出格式>] [-fstype <文件系统类型>]
+[-gid <群组识别码>] [-group <群组名称>] [-helpg-ilname <范本样式>] [-iname <范本样式>]
+[-inum <inode编号>] [-ipath <范本样式>] [-iregex <范本样式>] [-links <连接数目>] [-lname <范本样式>]
+[-lsg-maxdepth <目录层级>] [-mindepth <目录层级>] [-mmin <分钟>][-mount] [-mtime <24小时数>]
+[-name <范本样式>] [-newer <参考文件或目录>] [-nogroup] [noleaf] [-nouser] [-ok <执行指令>]
+[-path <范本样式>] [-perm <权限数值>] [-print] [-print0] [-printf <输出格式>] [-prune]
+[-regex <范本样式>] [-size <文件大小>] [-true] [-type <文件类型>] [-uid <用户识别码>]
+[-used <日数>] [-user <拥有者名称>] [-version] [-xdev] [-xtype <文件类型>]
+
 
 补充说明：find指令用于查找符合条件的文件。任何位于参数之前的字符串都将被视为欲查找的目录。
 
@@ -54,7 +67,7 @@
 　-regex<范本样式> 　指定字符串作为寻找文件或目录的范本样式。 
 　-size<文件大小> 　查找符合指定的文件大小的文件。 
 　-true 　将find指令的回传值皆设为True。 
-　-typ<文件类型> 　只寻找符合指定的文件类型的文件。 
+　-type<文件类型> 　只寻找符合指定的文件类型的文件。 
 　-uid<用户识别码> 　查找符合指定的用户识别码的文件或目录。 
 　-used<日数> 　查找文件或目录被更改之后在指定时间曾被存取过的文件或目录，单位以日计算。 
 　-user<拥有者名称> 　查找符合指定的拥有者名称的文件或目录。 
