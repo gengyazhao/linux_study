@@ -19,3 +19,8 @@ $1:代表传入的第一个参数
 find . -mtime -1 -type f -print0 | xargs -0 tar rvf "../$archive.tar"
 
 
+cat << EOF >test.sh 
+> 123123123
+> 3452354345
+> asdfasdfs
+> EOF
