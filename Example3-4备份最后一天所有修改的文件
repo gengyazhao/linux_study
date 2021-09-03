@@ -16,7 +16,22 @@ $1:代表传入的第一个参数
 如果$1存在并且不为空那么archive=$1，否则archive=$BACKUPFILE
 
 
-find . -mtime -1 -type f -print0 | xargs -0 tar rvf "../$archive.tar"
+gzip -c backup-09-03-2021.tar >backup-09-03-2021.tar.gz
+压缩，保留原文件
+gzip backup-09-03-2021.tar
+压缩，不保留原文件
+
+gzip -dc backup-09-03-2021.tar.gz >backup-09-03-2021.tar
+解压，保留原文件
+gzip -d backup-09-03-2021.tar.gz
+解压，不保留原文件
+
+tar xvf backup-09-03-2021.tar
+解包，保留原文件
+
+
+tar cvf backup-09-03-2021.tar backup-09-03-2021
+打包，保留原文件
 
 
 cat << EOF >test.sh 
