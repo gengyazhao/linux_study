@@ -1,0 +1,77 @@
+[root@linux]$ cat Example4-1.sh
+#!/bin/bash
+#变量赋值和替换
+
+a=375
+hello=$a
+#shell脚本在赋值时，=前后不能有空格
+
+echo hello
+#没有变量引用，hello是个字符串
+
+echo $hello
+echo ${hello}
+echo "$hello"
+echo "${hello}"
+echo
+hello="A B  C   D"
+echo $hello
+#不带双引号的，当变量包含空格时，变量替换时会把空格去除
+echo "$hello"
+#带双引号的，与原变量相同，包含空格
+echo
+echo '$hello'
+#全引用，$将变成一个单独的字符
+
+hello=
+#设置为空值
+
+echo "$hello (null value) = $hello"
+#注意设置一个变量为空，与unset它，不是一回事，虽然看起来一样
+#-----------------------------------------------------------
+#可以在同一行上设置多个变量，以空白分隔
+var1=21 var2=22 var3=23
+echo
+echo "var1=$var1 var2=$var2 var3=var3"
+#-----------------------------------------------------------
+echo;echo
+numbers="one two three"
+other_numbers="1 2 3"
+#如果变量中有空白，那么引用就必要了
+echo "numbers = $numbers"
+echo "other_numbers = $other_numbers"
+echo "uninitialized_variable = $uninitialized_variable"
+#还是一个空值
+
+uninitialized_variable=23
+#赋值
+
+unset uninitialized_variable
+#unset it
+echo "uninitialized_variable = $uninitialized_variable"
+#还是空值
+echo
+exit 0
+
+[root@linux]$ ./Example4-1.sh
+hello
+375
+375
+375
+375
+
+A B C D
+A B  C   D
+
+$hello
+ (null value) =
+
+var1=21 var2=22 var3=var3
+
+
+numbers = one two three
+other_numbers = 1 2 3
+uninitialized_variable =
+uninitialized_variable =
+
+
