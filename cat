@@ -12,3 +12,8 @@ cat -n textfile1 > textfile2
 
 cat -b textfile1 textfile2 >> textfile3 
 把 textfile1 和 textfile2 的档案内容加上行号（空白行不加）之后将内容附加到 textfile3 里。
+
+
+cat << EOF > f.txt
+...
+EOF
