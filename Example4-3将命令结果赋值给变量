@@ -15,4 +15,9 @@ a=$(ls -l)
 echo $a
 echo
 echo "$a"
+
+a=2335
+#将23替换成BB
+b=${a/23/BB}
+
 exit 0
