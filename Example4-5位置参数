@@ -1,0 +1,38 @@
+[root@linux]$ cat Example4-5.sh
+#!/bin/bash
+#调用这个脚本至少需要10个参数
+#eg:./Example4-5.sh 1 2 3 4 5 6 7 8 9 10
+MINPARAMS=10
+echo "the name of this script is \"$0\"."
+echo "the name of this script is \"'basename $0'\"."
+if [ -n "$1" ]
+then
+        echo "Parameter #1 is $1"
+fi
+if [ -n "$2" ]
+then
+        echo "Parameter #2 is $2"
+fi
+
+#大于9的参数必须出现在{}中
+if [ -n "${10}" ]
+then
+        echo "Parameter #10 is ${10}"
+fi
+
+echo "all the command-line parameters are: "$*""
+# S#是传到脚本里的位置参数的个数，-lt 小于
+if [ $# -lt "$MINPARAMS" ]
+then
+        echo "this script needs at least $MINPARAMS command-line arguments!"
+fi
+exit 0
+
+
+[root@linux]$ ./Example4-5.sh 1 2 3 4 5 6 7 8 9 10
+the name of this script is "./Example4-5.sh".
+the name of this script is "'basename ./Example4-5.sh'".
+Parameter #1 is 1
+Parameter #2 is 2
+Parameter #10 is 10
+all the command-line parameters are: 1 2 3 4 5 6 7 8 9 10
