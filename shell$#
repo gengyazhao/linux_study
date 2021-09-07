@@ -4,8 +4,24 @@ $$
 Shell本身的PID（ProcessID） 
 $! 
 Shell最后运行的后台Process的PID 
+--------------------------------------------------------------
 $? 
-最后运行的命令的结束代码（返回值） 
+最后运行的命令的结束代码（返回值）,举例： 
+[root@linux]$ cat Example6-2.sh
+#!/bin/bash
+true
+echo "exit status of \"true\" = $?"
+
+#注意！需要一个空格
+! true
+echo "exit status of \"! true\" = $?"
+exit 0
+[root@linux]$ ./Example6-2.sh
+exit status of "true" = 0
+exit status of "! true" = 1
+[root@linux]$
+--------------------------------------------------------------
+
 $- 
 使用Set命令设定的Flag一览 
 $* 
