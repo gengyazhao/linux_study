@@ -1,0 +1,12 @@
+[root@linux]$ cat file_is_exists.sh
+#!/bin/bash
+file=/etc/passwd
+if [[ -e $file ]]
+then
+        echo "Password file exits."
+fi
+exit 0
+
+
+[root@linux]$ ./file_is_exists.sh
+Password file exits.
