@@ -1,0 +1,129 @@
+[root@linux]$ cat Example7-1.sh
+#!/bin/bash
+#如果你不确定一个条件如何判断，可以在一个if-test结构中测试它
+
+echo
+echo "Testing \"0\""
+if [ 0 ]
+then
+        echo "0 is true."
+else
+        echo "0 is false."
+fi
+echo
+echo "Testing \"1\""
+if [ 1 ]
+then
+        echo "1 is true."
+else
+        echo "1 is false."
+fi
+echo
+echo "Testing \"-1\""
+if [ -1 ]
+then
+        echo "-1 is true."
+else
+        echo "-1 is false."
+fi
+echo
+echo "Testing \"NULL\""
+if [ ]
+then
+        echo "NULL is true."
+else
+        echo "NULL is false."
+fi
+echo
+echo "Testing \"xyz\""
+if [ xyz ]
+then
+        echo "Random string is true."
+else
+        echo "Random string is false."
+fi
+echo
+
+echo "Testing \"\$xyz\""
+
+if [ $xyz ]
+then
+        echo "Uninitalized variable is true."
+else
+        echo "Uninitalized variable is false."
+fi
+echo
+echo "Testing \"-n \$xyz\""
+if [ -n "$xyz" ]#更深究的检查
+then
+        echo "Uninitalized variable is true."
+else
+        echo "Uninitalized variable is false."
+fi
+echo
+xyz=
+echo "Testing \"-n \$xyz\""
+if [ -n "$xyz" ]
+then
+
+        echo "Null variable is true."
+else
+        echo "Null variable is false."
+fi
+echo
+#什么时候false为true
+echo "Testing \"false\""
+if [ "false" ]
+then
+        echo "\"false\" is true."
+else
+        echo "\"false\" is false."
+fi
+echo
+echo "Testing \"\$false\""
+if [ "$false" ]
+then
+        echo "\"\$false\" is true."
+else
+        echo "\"\$false\" is false."
+fi
+echo
+exit 0
+
+
+
+运行结果：
+
+[root@linux]$ ./Example7-1.sh
+
+Testing "0"
+0 is true.
+
+Testing "1"
+1 is true.
+
+Testing "-1"
+-1 is true.
+
+Testing "NULL"
+NULL is false.
+
+Testing "xyz"
+Random string is true.
+
+Testing "$xyz"
+Uninitalized variable is false.
+
+Testing "-n $xyz"
+./Example7-1.sh: line 56: [: missing `]'
+Uninitalized variable is false.
+
+Testing "-n $xyz"
+Null variable is false.
+
+Testing "false"
+"false" is true.
+
+Testing "$false"
+"$false" is false.
+
