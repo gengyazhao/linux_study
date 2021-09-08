@@ -1,0 +1,46 @@
+[root@linux]$ cat Example7-2.sh
+#!/bin/bash
+#几个等效命令test       /usr/bin/test   []      /usr/bin/[
+echo
+if test -z "$1"
+then
+        echo "No command-line arguments."
+else
+        echo "First command-line argument is $1."
+fi
+echo
+if /usr/bin/test -z "$1"
+then
+        echo "No command-line arguments."
+else
+        echo "First command-line argument is $1."
+fi
+echo
+if [ -z "$1" ]
+then
+        echo "No command-line arguments."
+else
+        echo "First command-line argument is $1."
+fi
+echo
+if /usr/bin/[ -z "$1" ]
+then
+        echo "No command-line arguments."
+else
+        echo "First command-line argument is $1."
+fi
+
+echo
+exit 0
+
+
+运行结果：
+[root@linux]$ ./Example7-2.sh 110
+
+First command-line argument is 110.
+
+First command-line argument is 110.
+
+First command-line argument is 110.
+
+First command-line argument is 110.
