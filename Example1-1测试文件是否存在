@@ -5,8 +5,16 @@ if [[ -e $file ]]
 then
         echo "Password file exits."
 fi
+
+dir=/home/bozo
+#       "2>/dev/nell"隐藏错误信息
+if cd "$dir" 2>/dev/null;then
+        echo "Now in $dir."
+else
+        echo "can not change to $dir."
+fi
 exit 0
-
-
 [root@linux]$ ./file_is_exists.sh
 Password file exits.
+can not change to /home/bozo.
+[root@linux]$
