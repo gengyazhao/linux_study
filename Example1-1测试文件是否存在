@@ -13,8 +13,18 @@ if cd "$dir" 2>/dev/null;then
 else
         echo "can not change to $dir."
 fi
+var1=20;var2=22
+# -ne检测两个数是否不相等，不相等返回true
+[ "$var1" -ne "$var2" ] && echo "$var1 is not equal to $var2"
+# -d file 检测文件是否是目录，如果是则返回true.
+[ -d "$dir" ] || echo "$dir directory does not exist."
 exit 0
+
+
+#运行结果：
 [root@linux]$ ./file_is_exists.sh
 Password file exits.
 can not change to /home/bozo.
+20 is not equal to 22
+/home/bozo directory does not exist.
 [root@linux]$
