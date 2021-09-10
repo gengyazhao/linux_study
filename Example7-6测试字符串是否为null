@@ -1,0 +1,70 @@
+[root@linux]$ cat Example7-6.sh
+#!/bin/bash
+#测试字符串是否为null
+#-z 字符串为null,就是长度为0.
+#-n 字符串不为null
+if [-n $string1 ]
+then
+        echo "String \"string1\" is not null."
+else
+        echo "String \"string1\" is null."
+fi
+#$string1 没被声明和初始化，显示为非空
+echo
+
+
+#这次$string1被引用了
+if [-n "$string1" ]
+then
+        echo "String \"string1\" is not null."
+else
+        echo "String \"string1\" is null."
+fi
+echo
+
+
+#这次$string1变成“裸体”的了
+if [ $string1 ]
+then
+        echo "String \"string1\" is not null."
+else
+        echo "String \"string1\" is null."
+fi
+echo
+
+
+string1=initialized
+if [ $string1 ]
+then
+        echo "String \"string1\" is not null."
+else
+        echo "String \"string1\" is null."
+fi
+echo
+
+
+string1="a = b"
+#非引用的“$string1”现在给出了一个错误的结果！
+if [ $string1 ]
+then
+        echo "String \"string1\" is not null."
+else
+        echo "String \"string1\" is null."
+fi
+echo
+exit 0
+
+
+
+第一步就是下载apt-get
+
+curl https://raw.githubusercontent.com/dvershinin/apt-get-centos/master/apt-get.sh -o /usr/local/bin/apt-get
+第二部修改权限：
+chmod 0755 /usr/local/bin/apt-get
+然后如果不想配环境变量的话，直接可以进行
+
+/usr/local/bin/apt-get  install 包名
+
+这个方式安装的其实也很鸡肋，因为apt-get的源不好获取，而且最关键的是若读取源码，实际上运行apt-get走的是yum
+
+
