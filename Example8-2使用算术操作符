@@ -1,0 +1,38 @@
+[root@linux]$ cat Example8-2.sh
+#!/bin/bash
+n=1
+echo -n "$n"
+echo
+let "n = $n + 1"
+echo -n "$n"
+
+echo
+: $((n = $n + 1))
+echo -n "$n"
+
+((n = n + 1))
+echo -n "$n"
+
+n=$(($n + 1))
+echo -n "$n"
+: $[ n = $n + 1 ]
+echo -n "$n"
+#C风格增量操作
+let "n++"
+echo -n "$n"
+(( n++ ))
+echo -n "$n"
+: $(( n++ ))
+echo -n "$n"
+: $[ n++ ]
+echo -n "$n"
+echo
+exit 0
+
+
+
+
+[root@linux]$ ./Example8-2.sh
+1
+2
+345678910
