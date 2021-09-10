@@ -1,0 +1,28 @@
+[root@linux]$ cat Example7-7.sh
+#!/bin/bash
+#zmore
+#使用‘more’来查看gzip文件
+NOARGS=65
+NOTFOUND=66
+NOTGZIP=67
+#the number of arguments
+if [ $# -eq 0 ]
+then
+        echo "Usage:`basename $0` filename" >2
+        #错误信息输出到stder
+        exit $NOARGS
+        #脚本返回65作为退出码。
+fi
+filename=$1
+if [ ! -f "$filename" ]
+then
+        echo "File $filename not found!" >2
+        exit $NOTFOUND
+fi
+if [ ${filename##*.} != "gz" ]
+then
+        echo "File $1 is not a gzipped file!"
+        exit $NOTGZIP
+fi
+zcat $1 | more
+exit $?
