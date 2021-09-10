@@ -3,7 +3,8 @@
 #测试字符串是否为null
 #-z 字符串为null,就是长度为0.
 #-n 字符串不为null
-if [-n $string1 ]
+#-n前面必须加空格
+if [ -n $string1 ]
 then
         echo "String \"string1\" is not null."
 else
@@ -14,7 +15,7 @@ echo
 
 
 #这次$string1被引用了
-if [-n "$string1" ]
+if [ -n "$string1" ]
 then
         echo "String \"string1\" is not null."
 else
