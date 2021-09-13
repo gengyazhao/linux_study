@@ -1,0 +1,12 @@
+#!/bin/bash
+# $TMOUT        如果为非零值，那么在这个指定时间之后，shell提示符将会超时，导致一个logout.
+TMOUT=3
+echo "What is your favorite song?"
+echo "Quickly now,you only have $TMOUT seconds to answer!"
+read song
+if [ -z "$song" ]
+then
+        song="(no answer)"
+fi
+echo "Your favorite song is $song."
+exit 0
