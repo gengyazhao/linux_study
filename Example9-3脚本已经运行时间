@@ -1,0 +1,45 @@
+[root@linux]$ cat Example9-3.sh
+#!/bin/bash
+# $SECONDS      这个脚本已经运行的时间（s）
+TIME_LIMIT=10
+INTERVAL=1
+echo
+echo "Hit Control-C to exit before $TIME_LIMIT seconds."
+echo
+while [ "$SECONDS" -le "$TIME_LIMIT" ]
+do
+        if [ "$SECONDS" -eq 1 ]
+        then
+                units=second
+        else
+                units=seconds
+        fi
+        echo "This script has been running $SECONDS $units."
+        sleep $INTERVAL
+done
+echo -e "\a"
+#Beep!
+exit 0
+
+
+
+
+
+
+
+#运行结果：
+[root@linux]$ ./Example9-3.sh
+
+Hit Control-C to exit before 10 seconds.
+
+This script has been running 0 seconds.
+This script has been running 1 second.
+This script has been running 2 seconds.
+This script has been running 3 seconds.
+This script has been running 4 seconds.
+This script has been running 5 seconds.
+This script has been running 6 seconds.
+This script has been running 7 seconds.
+This script has been running 8 seconds.
+This script has been running 9 seconds.
+This script has been running 10 seconds.
