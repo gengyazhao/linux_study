@@ -1,0 +1,32 @@
+[root@linux]$ cat Example9-7.sh
+#!/bin/bash
+#read -t
+
+TIMELIMIT=4
+#对于Bash 1.x和Bash 2.x就需要使用“<&1”,对于Bash 3.x就不需要
+read -t $TIMELIMIT variable <&1
+echo
+
+if [ -z "$variable" ]
+then
+        echo "Timed out,the length of variable is 0."
+else
+        echo "variable = $variable"
+fi
+
+
+
+exit 0
+
+
+
+
+
+#运行结果：
+[root@linux]$ ./Example9-7.sh
+
+Timed out,the length of variable is 0.
+[root@linux]$ ./Example9-7.sh
+geng
+
+variable = geng
