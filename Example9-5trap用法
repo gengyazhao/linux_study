@@ -1,0 +1,37 @@
+#trap 要执行的命令 要监听的信号（trap功能：监听到信号，则执行中间的命令）
+
+
+[root@linux]$ cat Example9-5.sh
+#!/bin/bash
+#时间输入
+TIMELIMIT=3
+PrintAnswer(){
+if [ "$answer" = TIMEOUT ]
+then
+        echo $answer
+else
+        echo "Your favorite veggie is $answer"
+        kill $!
+        #$!是运行在后台的最后一个工作的PID。kill 将不再需要TimerOn函数运行在后台。
+fi
+}
+TimerOn()
+{
+# $$ shell本身的PID
+sleep $TIMELIMIT && kill -s 14 $$ &
+#等待3秒，然后发送一个信号给脚本。
+}
+Int14Vector()
+{
+answer="TIMEOUT"
+PrintAnswer
+exit 14
+}
+#trap 要执行的命令 要监听的信号（trap功能：监听到信号，则执行中间的命令）
+trap Int14Vector 14
+#为了我们的目的，时间中断(14)被破坏了。
+echo "What is your favorite vegetable"
+TimerOn
+read answer
+PrintAnswer
+exit 0
