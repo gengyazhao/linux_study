@@ -1,0 +1,56 @@
+[root@linux]$ cat Example9-8.sh
+#!/bin/bash
+E_BADARGS=65
+# $1 字符串是否不为0，不为0返回true
+if [ ! -n "$1" ]
+then
+        echo "Usage:`basename $0` argument1 argument2 etc."
+        exit $E_BADARGS
+fi
+echo
+index=1
+echo "Listing args whit \"\$*\":"
+for arg in "$*"
+do
+        echo "Arg #$index = $arg"
+        let "index+=1"
+done
+echo "Entire arg list seen as single word."
+for arg in "$@"
+do
+        echo "Arg #$index = $arg"
+        let "index+=1"
+done
+echo "Arg list seen as separate words."
+echo
+index=1
+echo "Listing args with \$* (unquoted):"
+for arg in $*
+do
+        echo "Arg #$index = $arg"
+        let "index+=1"
+done
+echo "Arg list seen as separate words."
+exit 0
+
+
+
+
+
+[root@linux]$ ./Example9-8.sh
+Usage:Example9-8.sh argument1 argument2 etc.
+
+
+[root@linux]$ ./Example9-8.sh 1 2
+
+Listing args whit "$*":
+Arg #1 = 1 2
+Entire arg list seen as single word.
+Arg #2 = 1
+Arg #3 = 2
+Arg list seen as separate words.
+
+Listing args with $* (unquoted):
+Arg #1 = 1
+Arg #2 = 2
+Arg list seen as separate words.
