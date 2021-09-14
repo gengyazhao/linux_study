@@ -1,0 +1,57 @@
+[root@linux]$ cat ./Example9-6.sh
+#!/bin/bash
+#timeout间隔
+INTERVAL=5
+
+timedout_read(){
+timeout=$1
+varname=$2
+
+
+# man stty可以查看stty用法，
+#stty -g        print all current settings in a stty-readable form
+old_tty_settings=`stty -g`
+#min N  with -icanon, set N characters minimum for a completed read
+#设置完成读取的最小N个字符
+# time N with -icanon, set read timeout of N tenths of a second
+#设置读取超时为十进制N秒
+stty -icanon min 0 time ${timeout}0
+
+
+#此处就是read $varname,eval可用于两次扫描：
+#test.txt内容：hello shell world!
+#myfile="cat test.txt"
+#eval echo $myfile　　#result:hello shell world!
+
+eval read $varname
+echo "$varname--------------------$your_name"
+#察看stty 的man页
+stty "$old_tty_settings"
+}
+
+
+echo
+#echo -n 不换行输出
+echo -n "What's your name ? Quick!"
+timedout_read $INTERVAL your_name
+echo
+#-z检测字符串长度是否为0，为0返回true
+if [ ! -z "$your_name" ]
+then
+        echo "Your name is $your_name."
+else
+        echo "Timed out."
+fi
+echo
+exit 0
+
+
+
+#运行结果：
+[root@linux]$ ./Example9-6.sh
+
+What's your name ? Quick!gengyu
+your_name--------------------gengyu
+
+Your name is gengyu.
+
