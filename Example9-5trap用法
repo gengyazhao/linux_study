@@ -28,10 +28,32 @@ PrintAnswer
 exit 14
 }
 #trap 要执行的命令 要监听的信号（trap功能：监听到信号，则执行中间的命令）
+#监测到信号14，执行函数Int14Vector
+
 trap Int14Vector 14
-#为了我们的目的，时间中断(14)被破坏了。
+
 echo "What is your favorite vegetable"
 TimerOn
 read answer
 PrintAnswer
 exit 0
+
+
+
+
+
+#执行顺序：
+#监测到信号14，执行函数Int14Vector
+#1：trap Int14Vector 14
+
+#sleep 3秒，然后kill脚本，发送14
+#2： TimerOn
+
+#在TimerOn sleep的3秒里，读answer
+#3： read answer，如果没有读到answer则不执行4，如果读到answer则执行4
+
+#4： PrintAnswer
+
+#5：如果3中没有读到answer，则等到TimerOn sleep 3秒结束，然后kill脚本，发送14，trap监测到信号14，执行函数Int14Vector
+
+#6：执行执行函数Int14Vector    answer="TIMEOUT"        PrintAnswer
