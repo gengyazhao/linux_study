@@ -1,0 +1,19 @@
+最近新安装了CentOs 8，在学习过程中，频繁使用rm/cp/mv进行操作
+但是发现每次操作都会出现提示信息，比如：
+[root@MiWiFi-R4CM-srv etc]# rm .vimrc.swp
+rm: remove regular file ‘.vimrc.swp’? y
+
+这样很是麻烦，于是就想着取消提示信息。
+.bashrc一般在用户的根目录，找不到的可以通过find命令查找
+find / -name ‘.bashrc’
+cd ~
+vi .bashrc
+#注释掉以下信息：
+#alias rm=‘rm -i’
+#alias cp=‘cp -i’
+#alias mv=‘mv -i’
+
+Esc + : wq!
+
+配置生效：
+source .bashrc
