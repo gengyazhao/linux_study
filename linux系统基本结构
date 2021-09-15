@@ -1,0 +1,49 @@
+1、查处系统PCI设备：  lspci
+lspci命令可以列出所有的PCI设备，比如主板、声卡、显卡、网卡、USB接口设备等。
+2、查看CPU信息：  more /proc/cpuinfo
+3、查看系统内存信息： more /proc/meminfo
+4、查看磁盘分区信息： fdisk -l
+
+
+
+
+linux外在设备的使用
+U盘在linux下被识别为SCSI设备，因此对应的设备文件为/dev/sdax,主设备号sd表示SCSI disk，a表示第一块SCSI设备。
+常见文件系统类型（文件系统类型就是分区的格式）
+msdos DOS文件系统类型
+vfat  支持长文件名的DOS分区文件系统类型，也可理解为windows文件系统类型
+iso9660 光盘格式文件系统类型
+ext2/ext3 linux下的文件系统类型
+
+
+
+设备的挂载使用
+mount格式如下：
+mount -t 文件系统类型 设备名 挂载点
+linux系统中有一个/mnt目录，专门用作挂载点目录。
+
+挂载U盘
+挂载U盘前首先确认U盘设备名，在命令行输入：dmesg|more 查看，一般设备文件为/dev/sda1，
+然后建立挂载点mkdir /mnt/usb
+进行挂载：
+mount -t vfat /dev/sda1 /mnt/usb
+这样就可以通过访问/mnt/usb目录来访问U盘的内容了。
+
+挂载光盘
+mount -t iso9660 /dev/hda /mnt/cdrom
+或者
+mount /dev/cdrom /mnt/cdrom
+
+设备的卸载
+umount 挂载目录
+例如：
+umount /mnt/cdrom
+
+linux目录功能介绍：
+/etc目录
+存放系统管理相关的配置文件，如系统初始化文件/etc/rc，用户信息文件/etc/passwd，网络配置文件和服务启动文件。
+/usr目录
+存放就用程序和文件，软件包默认安装目录。
+
+
+
