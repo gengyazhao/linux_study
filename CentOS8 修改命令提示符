@@ -1,0 +1,7 @@
+1、新建命令提示符设置文件
+vi /etc/profile.d/mycmd.sh
+
+2、配置如下：
+export PS1=’[\e[32;1m][\u@\d \t \w]$\e[m’
+3、配置生效：
+source /etc/profile.d/mycmd.sh
