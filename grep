@@ -1,3 +1,12 @@
+举例：
+列出install.log文件中含有RPM字符串的行
+grep RPM install.log
+
+列出install.log文件中含有 rpm字符串的行，忽略大小写，并标识出每行的具体行号
+grep -ni rpm install.log
+
+
+
 功能说明：查找文件里符合条件的字符串。
 
 语　　法：grep [-abcEFGhHilLnqrsvVwxy][-A<显示列数>][-B<显示列数>][-C<显示列数>][-d<进行动作>][-e<范本样式>][-f<范本文件>][--help][范本样式][文件或目录...]
