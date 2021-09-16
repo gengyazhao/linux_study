@@ -42,8 +42,91 @@ umount /mnt/cdrom
 linux目录功能介绍：
 /etc目录
 存放系统管理相关的配置文件，如系统初始化文件/etc/rc，用户信息文件/etc/passwd，网络配置文件和服务启动文件。
+
+fstab 系统开机启动自动挂载分区列表，需要设置开机自动挂载的分区，都可以在此文件加入
+inittab init命令的配置文件，用来完成对整个系统的基本初始化配置
+hosts ip与域名映射文件
+resolv.conf 客户端DNS配置文件
+init.d  此目录包含所有服务启动脚本，开机由系统自动启动这些服务
+sysconfig/network-scripts/ifcfg-eth0  IP地址配置文件
+X11 X-Window的配置文件
+syslog.conf 系统日志输出配置文件
+crontab 系统级别的守护进程配置文件
+sysctl.conf 系统内核参数配置文件
+services  定义了系统服务与端口的对应关系
+profile   系统全局环境变量配置文件
+
+
 /usr目录
 存放就用程序和文件，软件包默认安装目录。
 
+src 包含了所有程序的源代码，其中主要是linux核心程序源代码
+local 该目录存放本地安装的软件和其他文件，与linux系统无关
+bin以及local/bin  使用者可执行的二进制文件目录
+lib以及local/bin  系统使用的函数库目录
+sbin以及local/sbin  系统管理员才能执行的指令
+include 此目录包含了C语言的头文件，文件扩展名大多是.h
+share   存放共享的文件和数据库
 
+
+
+/var目录
+存放系统运行以及软件运行的日志信息
+
+log 存放各种应用程序的日志文件，需要定期清理
+lib 存放系统正常运行时需要改变的库文件
+spool 是mail/new/打印机队列和其他队列输入输出的缓冲目录
+tmp 允许存放比/tmp中更大的文件
+lock  存放被锁定的文件，很多程序都会在/var/lock下产生一个锁文件，以保证其他程序不能同时使用这个设备或文件
+local 存放着/usr/local中所安装程序的可变数据
+account 存放已经格式化的man页
+run 包含了到下次系统启动前的系统信息
+
+
+
+/dev目录
+包含系统所有的设备文件
+fd*   软盘设备
+audio*    声卡设备
+hd*   IDE硬盘设备，hda/hdb...
+sd*   SCSI设备，sda/sdb...
+lp*   并行串口
+pty*  网络中登录的远程终端设备
+ram*  系统内存
+tty*  虚拟控制台，linux上一共有6个虚拟控制台，
+ttys*  串行端口，ttys0,ttys1类似于windows下的COM1、COM2
+console 系统控制台，也叫桌面控制台，可以直接链接到显示器
+null    输出空设备
+
+
+
+/proc目录
+此目录是一个虚拟目录，目录所有信息都是内存的映射，通过这个虚拟的内存映射目录，可以和内核内部数据结构进行交互，获取有关进程的有用信息，同时也可以在系统运行中修改内核参数。
+与其他目录不同，/proc存在于内存中，而不是硬盘上。
+
+cpuinfo     CPU的详细信息，包括CPU名称、型号、类型等
+meninfo     内存信息，包括物理内存和虚拟内存
+filesystems     当前系统支持的文件系统类型
+devices     内核中的设备驱动程序列表
+net         网络使用协议以及状态信息
+dma         当前使用的dma通道
+ioports     当前使用的I/O端口
+modules     当前系统加载的内核模块信息
+stat        系统的各种状态信息
+uptime      系统总的启动时间和空闲时间，单位s
+version     内核版本信息
+loadavg     系统平均负载
+kcore       系统物理内存的映像，与物理内存大小完全一样，但实际不占用这么大空间
+kmsg        内核输出信息，同时被输出到syslog
+
+
+
+其他目录
+/boot 目录：存放linux启动的核心文件，具体包含一些镜像文件和链接文件。若遭到破坏，系统将无法启动。
+/bin 目录：存放可执行的二进制文件，bin其实就是binary的缩写。/bin 存放常用的linux命令，如vi/mount等等。
+/sbin 目录：存放可执行的二进制文件，存放超级用户才能执行的命令，如常见的磁盘检查修复命令fcsk、磁盘分区命令fdisk、创建文件系统命令mkfs、关机命令shutdown和初始化系统命令init等。
+/home 目录：系统中每个用户的工作目录，cd ~进入
+/lib 目录：存放共享程序库和映像文件。
+/mnt 目录：外在设备挂载点目录。
+/lost+found 目录：用于保存丢失的文件。
 
