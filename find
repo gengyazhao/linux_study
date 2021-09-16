@@ -1,3 +1,32 @@
+举例
+在系统根目录下，查找文件类型为普通文件，属于ixdba用户的，2天以前的，并且查找时不包含/usr/bin目录,文件名为main.c的文件，并将结果输出到屏幕。
+find / -path "/usr/bin" -prune -o -name "main.c" -user ixdba -type f -mtime +2 -print
+
+对上例中搜索结果进行删除操作
+find / -path "/usr/bin" -prune -o -name "main.c" -user ixdba -type f -mtime +2 -print -exec rm {} \;
+
+在系统根目录下查找不在/var/log和/usr/bin目录，文件名为"main.c"的所有普通文件
+find / \( -path /var/log -o -path /usr/bin \) -prune -o -name "main.c" -print
+#\表示引用，告诉shell不对后面的字符做特殊解释，而留给find命令去解释其意义。
+
+查找系统中所有大小为0的普通文件，并列出它们的完整路径
+find / -type f -size 0 -exec ls -al {} \;
+
+查找系统/var/logs目录中修改时间在7天以前的普通文件，然后以交互方式删除。
+find /var/logs -type f -mtime +7 -ok rm {} \;
+
+在当前目录及子目录下查找所有"*.txt"的文件
+find . -name "*.txt" -print
+
+在用户自己的根目录下查找文件名以一个大写字母开头，紧接着是一个小写字母和两个数字，最后以".txt"结尾的文件。
+find ~ -name "[A-Z][a-z][0-9][0-9]*.txt" -print
+
+在/etc目录下查找文件属主为ixdba用户的文件
+find /etc -user ixdba -print
+
+
+
+
 功能说明：查找文件或目录。
 
 语　　法：
