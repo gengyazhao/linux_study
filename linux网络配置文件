@@ -1,0 +1,15 @@
+在linux系统中，TCP/IP网络是通过若干个文本文件进行配置的。系统中常用和网络配置文件如下：
+/etc/sysconfig/network
+/etc/hosts
+/etc/services
+/etc/host.conf
+/etc/nsswitch.conf
+/ect/resolv.conf
+/etc/xinetd.conf
+/etc/modules.conf
+/etc/sysconfig/network-scripts/ifcfg-eth0
+
+这些文件更改会立即生效（除了/etc/sysconfig/network）
+
+/ect/sysconfig/network
+网络设置，指定
