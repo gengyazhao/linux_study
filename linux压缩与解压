@@ -1,4 +1,5 @@
 zip [options] destination_file source_files
+对文件或者目录进行压缩或者解压，生成.zip文件。
 zip举例
 1、将/etc 目录下的所有文件以及目录进行压缩，设置压缩级别为最高，保存到文件/opt/etc.zip
 zip -9r /opt/etc.zip /etc
@@ -22,3 +23,11 @@ unzip -o /opt/etc.zip -x etc/inittab -d /etc
 
 7、将/opt/etc.zip压缩文件全部解压到/etc目录下，除了etc/inittab文件，并且在解压过程中如果出现相同的文件不进行覆盖
 unzip -n /opt/etc.zip -x etc/inittab -d /etc
+
+
+
+
+gzip [options] 压缩/解压缩的文档名
+只能对文件进行压缩，不能压缩目录。即使指定压缩的目录，也只能压缩目录内的所有文件。生成.gz文件。
+gzip举例
+1、首先将/etc目录下的所有文件以及子目录进行压缩，备份压缩包etc.zip到/opt目录，
