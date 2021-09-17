@@ -1,0 +1,24 @@
+zip [options] destination_file source_files
+zip举例
+1、将/etc 目录下的所有文件以及目录进行压缩，设置压缩级别为最高，保存到文件/opt/etc.zip
+zip -9r /opt/etc.zip /etc
+
+2、将/var 目录中所有文件以及子目录压缩，除了"*.log"的文件，将压缩文件保存到/opt目录下
+zip -r /opt/var.zip /var -x "*.log"
+
+3、将上面/opt/etc.zip中的/etc/passwd文件从压缩包中删除
+zip /opt/etc.zip -d /etc/passwd
+
+4、修改了/etc/inittab文件，希望把更改信息更新到/opt/etc.zip中
+zip -u /opt/etc.zip /etc/inittab
+
+5、把/etc目录下进行了修改或者增加的所有文件更新到/opt/etc.zip文件。
+zip -u /opt/etc.zip /etc/*
+#或者使用
+zip -ru /opt/etc.zip /etc
+
+6、将/opt/etc.zip压缩文件全部解压到/etc目录下，除了etc/inittab文件，并且在解压过程中如果出现相同的文件就直接进行覆盖，不要求用户确认。
+unzip -o /opt/etc.zip -x etc/inittab -d /etc
+
+7、将/opt/etc.zip压缩文件全部解压到/etc目录下，除了etc/inittab文件，并且在解压过程中如果出现相同的文件不进行覆盖
+unzip -n /opt/etc.zip -x etc/inittab -d /etc
