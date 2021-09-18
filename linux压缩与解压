@@ -30,4 +30,49 @@ unzip -n /opt/etc.zip -x etc/inittab -d /etc
 gzip [options] 压缩/解压缩的文档名
 只能对文件进行压缩，不能压缩目录。即使指定压缩的目录，也只能压缩目录内的所有文件。生成.gz文件。
 gzip举例
-1、首先将/etc目录下的所有文件以及子目录进行压缩，备份压缩包etc.zip到/opt目录，
+1、首先将/etc目录下的所有文件以及子目录进行压缩，备份压缩包etc.zip到/opt目录，然后对etc.zip文件进行gzip压缩，设置gzip的压缩级别为9.
+zip -r /opt/etc.zip /etc
+gzip -9v /opt/etc.zip
+
+2、查看上述etc.zip.gz文件的压缩信息。
+gzip -l /opt/etc.zip.gz
+
+3、解压上述etc.zip.gz文件到当前目录
+gzip -d /opt/etc.zip.gz
+
+
+
+
+
+
+
+
+bzip2 [options] 压缩/解压缩的文档名
+只能对文件进行压缩，不能压缩目录。即使指定压缩的目录，也只能压缩目录内的所有文件。生成.bz2文件。
+bzip2举例
+1、将/opt目录下的etc.zip、var.zip和backup.zip进行压缩，设置压缩率为最高，同时压缩完成后不删除原文件，显示压缩过程的详细信息。
+bzip2 -9vk /opt/etc.zip /opt/var.zip /opt/backup.zip
+
+在压缩完毕后，/opt目录下就会生成相应的etc.zip.bz2、var.zip.bz2和backup.zip.bz2文件。
+
+
+
+tar [主选项 + 辅助选项] 文件或者目录
+对文件或者目录进行打包，但是不进行压缩。
+辅助选项[-z/-j/-f/-w/-Z]
+-z 调用gzip命令在文件打包的过程中进行压缩/解压文件
+-j 调用bzip2命令在文件打包的过程中进行压缩/解压文件
+-f 档案文件的存储设备，-f必须是tar命令的最后一个选项。
+
+tar举例
+1、将/etc目录下的所有文件打包，显示打包详细文件，保存到/opt/etc.tar 
+tar -cvf /opt/etc.tar /etc
+2、将/etc目录下的所有文件打包并压缩，显示打包详细文件，保存到/opt/etc.tar.gz
+tar -zcvf /opt/etc.tar.gz /etc
+
+tar -jcvf /opt/etc.tar.bz2 /etc
+3、查阅上面/opt/etc.tar.gz压缩包的内容。
+tar -ztvf /opt/etc.tar.gz
+tar -jtvf /opt/etc.tar.bz2
+4、将/opt/etc.tar.gz解压到/usr/local/src下
+tar -zxvf /opt/etc.tar.gz
