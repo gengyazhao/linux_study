@@ -2,6 +2,7 @@
 #!/bin/bash
 E_BADARGS=65
 # $1 字符串是否不为0，不为0返回true
+#通过$*和$@列出所有的参数
 if [ ! -n "$1" ]
 then
         echo "Usage:`basename $0` argument1 argument2 etc."
