@@ -6,6 +6,7 @@ ls -hl
 
 打开六个Terminal
 ALT + F1——F6
+Ctrl + Alt + F1-F6可以打开不同的terminal,在命令行输入startx或者按下Ctrl + Alt + F7可以切换到图形界面
 
 取消一个已经运行的shutdown
 shutdown -c
