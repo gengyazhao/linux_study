@@ -27,7 +27,7 @@ find /etc -user ixdba -print
 
 
 
-功能说明：查找文件或目录。
+功能说明：在指定的路径下查找文件或目录。
 
 语　　法：
 find   path   -option   [   -print ]   [ -exec   -ok   command ]   {} \;
