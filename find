@@ -3,7 +3,8 @@
 注意：-path 后面的路径参数最后面不能加/，只能是/usr/bin,而不能是/usr/bin/
 find / -path "/usr/bin" -prune -o -name "main.c" -user ixdba -type f -mtime +2 -print
 
-对上例中搜索结果进行删除操作
+对上例中搜索结果进行删除操作.
+注意：-exec command {} \;  在\;前面一定要有空格才行。
 find / -path "/usr/bin" -prune -o -name "main.c" -user ixdba -type f -mtime +2 -print -exec rm {} \;
 
 在系统根目录下查找不在/var/log和/usr/bin目录，文件名为"main.c"的所有普通文件
