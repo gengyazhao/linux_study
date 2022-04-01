@@ -1,5 +1,5 @@
 举例
-在系统根目录下，查找文件类型为普通文件，属于ixdba用户的，2天以前的，并且查找时不包含/usr/bin目录的文件名为main.c的文件，并将结果输出到屏幕。
+在系统根目录下，查找文件类型为普通文件，文件名为main.c,属于ixdba用户的，2天以前的，并且查找时不包含/usr/bin目录的main.c文件，并将结果输出到屏幕。
 find / -path "/usr/bin" -prune -o -name "main.c" -user ixdba -type f -mtime +2 -print
 
 对上例中搜索结果进行删除操作
