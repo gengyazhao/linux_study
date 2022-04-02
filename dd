@@ -1,0 +1,18 @@
+dd命令用来转换或拷贝文件，同时可以对设备进行备份。其格式如下：
+dd if="input_file" of="output_file" bs="block_size" count="number"
+if:就是输入的文件，可以是设备，例如磁盘某分区或者整个磁盘。
+of:就是输出文件，也可以是输出设备，例如磁盘、磁带等。
+bs:指定一个block的大小，如果没有指定，默认为512byte。
+count:就是bs的数量。
+
+举例：
+将/etc/inittab文件备份到/opt/inittab.bak中
+dd if=/etc/inittab of=/opt/inittab.bak
+
+将/dev/sda2整个分区进行备份，保存备份文件到/opt目录。
+dd if=/dev/sda2 of=/opt/sda2.bak
+这里是将磁盘某个分区的数据全部备份，dd命令还能备份整个磁盘的数据，这里输出路径不能在/dev/sda2所在分区，即输出路径不能在输入路径之内。
+
+将上面例子中的备份包/opt/sda2.bak恢复到相应的分区
+dd if=/opt/sda2.bak of=/dev/sda2
+#在恢复目标分区时，一定要先卸载目标分区，待恢复完成进行挂载。
