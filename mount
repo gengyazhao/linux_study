@@ -14,59 +14,30 @@ mount -t cifs -o username=xxx,password=xxx //x.x.x.x/0gyz /export/ossuser/my_dir
 　　mount [-fnrsvw] [-t vfstype] [-o options] device dir 
 
 　　说明 : 
-　　
 　　将某个档案的内容解读成档案系统，然后将其挂在目录的某个位置之上。当这个命令执行成功后，直到我们使用 umnount 将这个档案系统移除为止，这个命令之下的所有档案将暂时无法被调用。 
-　　
 　　这个命令可以被用来挂上任何的档案系统，你甚至可以用 -o loop 选项将某个一般的档案当成硬盘机分割挂上系统。这个功能对于 ramdisk,romdisk 或是 ISO 9660 的影像档之解读非常实用。 
 　　
 　　参数 
-　　
-　　-V 
-　　
-　　显示程序版本 
-　　-h 
-　　
-　　显示辅助讯息 
-　　-v 
-　　
-　　显示较讯息，通常和 -f 用来除错。 
-　　-a 
-　　将 /etc/fstab 中定义的所有档案系统挂上。 
-　　
-　　-F 
-　　这个命令通常和 -a 一起使用，它会为每一个 mount 的动作产生一个行程负责执行。在系统需要挂上大量 NFS 档案系统时可以加快挂上的动作。 
-　　
-　　-f 
-　　通常用在除错的用途。它会使 mount 并不执行实际挂上的动作，而是模拟整个挂上的过程。通常会和 -v 一起使用。 
-　　
-　　-n 
-　　一般而言，mount 在挂上后会在 /etc/mtab 中写入一笔资料。但在系统中没有可写入档案系统存在的情况下可以用这个选项取消这个动作。 
-　　
-　　-s-r 
-　　等于 -o ro 
-　　
-　　-w 
-　　等于 -o rw 
-　　
-　　-L 
-　　将含有特定标签的硬盘分割挂上。 
-　　
-　　-U 
-　　将档案分割序号为 的档案系统挂下。-L 和 -U 必须在/proc/partition 这种档案存在时才有意义。 
-　　
-　　-t 
-　　指定档案系统的型态，通常不必指定。mount 会自动选择正确的型态。 
-　　
-　　-o async 
-　　打开非同步模式，所有的档案读写动作都会用非同步模式执行。 
-　　
-　　-o sync 
-　　在同步模式下执行。 
-　　
+　　-V  显示程序版本 
+　　-h  显示辅助讯息 
+　　-v  显示较讯息，通常和 -f 用来除错。 
+　　-a  将 /etc/fstab 中定义的所有档案系统挂上。
+　　-F  这个命令通常和 -a 一起使用，它会为每一个 mount 的动作产生一个行程负责执行。在系统需要挂上大量 NFS 档案系统时可以加快挂上的动作。 
+　　-f  通常用在除错的用途。它会使 mount 并不执行实际挂上的动作，而是模拟整个挂上的过程。通常会和 -v 一起使用。 不加载设备，仅查看mount挂载状态。
+　　-n  一般而言，mount 在挂上后会在 /etc/mtab 中写入加载信息。但在系统中没有可写入档案系统存在的情况下可以用这个选项取消这个动作。
+    -r  以只读方式加载设备
+　　-s-r  等于 -o ro 
+　　-w  等于 -o rw  以可读写模式加载设备，属于mount默认设置。
+　　-L  将含有特定标签的硬盘分割挂上。 
+　　-U  将档案分割序号为 的档案系统挂下。-L 和 -U 必须在/proc/partition 这种档案存在时才有意义。 
+　　-t  指定档案系统的型态，通常不必指定。mount 会自动选择正确的型态。 
+　　-o async  打开非同步模式，所有的档案读写动作都会用非同步模式执行。 
+　　-o sync   在同步模式下执行。 
+  
 　　-o atime 
 　　-o noatime 
 　　当 atime 打开时，系统会在每次读取档案时更新档案的『上一次调用时间』。当我们使用 flash 档案系统时可能会选项把这个选项关闭以减少写入的次数。 
-　　
+  
 　　-o auto 
 　　-o noauto 
 　　打开/关闭自动挂上模式。 
@@ -135,15 +106,11 @@ Couldn't chdir to /mnt/0gyz: No such file or directory
 0gyz
 [root@linux]$ cd 0gyz #进入挂载点
 [root@linux]$ ls  #查看挂载文件夹内文件
-0截图                                           Beyond Compare v4.1.3.20814 x86.exe             memo                U2020backup         缩写含义.txt
-0技术文档                                       BTS3900&BTS5900 V100R013C10SPC100 Reference-CN  mysql.TXT           VoLte网元介绍.docx  脚本
-0科锐                                           chm                                             part_Template.xlsx  临时4G脚本.xlsx     资料
-0表格excel                                      chromedriver.exe                                software-exam       交换机.txt.bak      频点转换1.3.rar
-ActiveOfficeToolUI_sign_1.0.0_201708141440.exe  click_me_1.2                                    TDS规避license.txt  备查文档.docx       频点转换工具.exe
-band--Hz.png                                    DataBase.txt                                    temp                新人信息.txt        高危命令列表high_riskerlist(1).xls
-BAND频带和运营商频带.txt                        IPOP.EXE                                        Thumbs.db           练习
-BBU常用配置命令.txt                             IPOP V4.1帮助文档.doc                           TUE.docx            统计.xlsx
-BBU常用配置命令.txt.bak                         lte协议.txt                                     U2020               绩效
+0截图
+0技术文档
+0科锐 
+0表格excel                                      
+
 [root@linux]$ umount -nv .  #在挂载文件夹内时，不能卸载
 optind 3 unmount dir /mnt/0gyz
 unmount error 16 = Device or resource busy
