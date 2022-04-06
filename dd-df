@@ -16,3 +16,15 @@ dd if=/dev/sda2 of=/opt/sda2.bak
 将上面例子中的备份包/opt/sda2.bak恢复到相应的分区
 dd if=/opt/sda2.bak of=/dev/sda2
 #在恢复目标分区时，一定要先卸载目标分区，待恢复完成进行挂载。
+
+
+
+
+
+
+df
+df命令用来检查linux系统的磁盘空间占用情况。
+-h  以容易理解的格式输出文件系统分区占用情况，如kB、MB、GB
+-T  显示磁盘分区的文件系统类型
+
+df -hT
