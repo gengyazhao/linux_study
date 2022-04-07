@@ -1,10 +1,3 @@
-#win10文件夹挂载到linux上
-#共享win10上文件夹
-#创建linux上挂载文件夹
-mount -t cifs -o username=xxx,password=xxx //x.x.x.x/0gyz /export/ossuser/my_dir
-
-
-
 名称 : mount 
 　　使用权限 : 系统管理者或/etc/fstab中允许的使用者 
 　　使用方式 : 
@@ -85,14 +78,14 @@ mount -t cifs -o username=xxx,password=xxx //x.x.x.x/0gyz /export/ossuser/my_dir
 　　 #mount -o loop /tmp/image.iso /mnt/cdrom 
 　　相关命令umount
   
-  
- 
+举例：  
+#win10文件夹挂载到linux上
+#共享win10上文件夹
+#创建linux上挂载文件夹
+mount -t cifs -o username=xxx,password=xxx //x.x.x.x/0gyz /export/ossuser/my_dir
  1、将windows系统下0gyz文件夹设置为共享
  2、在linux系统下创建挂载点 mkdir /mnt/0gyz
  3、windows系统用户名：user1 密码：pwd1
- 
-
-
 
 [root@linux]$ cd mnt  #进入linux系统挂载目录
 [root@linux]$ ls      #查看已挂载点
@@ -122,3 +115,21 @@ Refer to the umount.cifs(8) manual page (man 8 umount.cifs)
 [root@linux]$ umount -nv 0gyz/  #卸载0gyz文件夹
 optind 3 unmount dir /mnt/0gyz
 umount2 succeeded
+
+
+将光盘镜像文件挂载到linux系统下
+mount -o loop -t iso9660 /iso/RHEL4-U4-i386-AS-discl.iso /ixdba
+这里的loop表示把一个镜像文件当成硬盘分区挂接到系统，
+-t表示镜像文件的类型为iso9660，也就是光盘的标准文件系统。
+/iso/RHEL4-U4-i386-AS-discl.iso表示镜像文件路径
+/ixdba表示挂载点
+
+windows+linux双系统并存环境，将windows下的D盘挂载到linux下的/mnt/d目录下，并且支持中文。
+mount -t vfat -o codepage=936,iocharset=cp936 /dev/hda3 /mnt/d
+
+在一台linux系统上以只读的方式挂载另一台linux系统上共享出来的分区，也就是network filesystem(NFS)文件系统。
+mount -t nfs -o ro x.x.x.x:/home/ixdba /mnt/nfs
+-t nfs 指定挂载的文件系统类型是nfs
+-o ro  指定以只读的方式挂载
+x.x.x.x表示IP地址
+
