@@ -1,0 +1,26 @@
+ifconfig命令用来配置网络或显示当前网络接口状态。类似于windows系统下的ipconfig命令。（if和ip是不同的）
+ifconfig命令必须以root用户来执行。格式如下：
+ifconfig [options] [interface] [inet|up|down|netmask|addr|broadcast]
+
+-a  显示所有的网络接口信息，包括活动的和非活动的
+-s  仅显示每个接口的摘要数据，是有关接口活动性的，每个接口显示一行信息
+-v  如果某个网络接口出现错误，将返回错误信息，以帮助发现和处理故障。
+
+interface：网络接口名，linux下的网络接口名类似于eth0/eth1和lo等，这个是可选项，如果不添加，则显示所有的网卡信息。如果添加，则显示指定网卡信息。
+addr:这里的addr是为网络接口指定的IP地址。
+broadcast：为指定的接口设置广播地址。
+
+在网卡eth0上配置两个IP地址，分别为192.168.1.123、192.168.2.123，子网掩码为255.255.255.254
+ifconfig eth0 192.168.1.123 netmask 255.255.255.254
+ifconfig eth0:0 192.168.2.123 netmask 255.255.255.254
+此时还想在eth0上增加IP地址，那么网卡命名依次是：eth0:1、eth0:2等。
+
+
+修改网卡的MAC地址为新的MAC地址
+ifconfig eth0 hw ether xx:xx:xx:xx:xx:xx
+
+将网卡eth0禁用后再启用
+ifconfig eth0 down
+ifconfig eht0 up
+
+注意：ifconfig命令配置的网卡信息，在网卡重启或者机器重启后，所有的配置都失效了。如果要让网卡配置永久生效，需要修改网卡配置文件。
