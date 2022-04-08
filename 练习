@@ -7,6 +7,6 @@ ls >/dev/null 2>&1
 
 2、列出linux系统中由root用户启动的进程，并且计算这些进程的个数，用一条命令组合实现。
 ps -U root | wc -l
-
 ps -ef | grep root |wc -l
 
+3、将ixdba这个目录进行分割压缩，每个分割压缩包大小设定为100M,并指定压缩包的名称为ixdba.tar.bz2,请用一条命令组合实现。
