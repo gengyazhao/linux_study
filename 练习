@@ -10,3 +10,4 @@ ps -U root | wc -l
 ps -ef | grep root |wc -l
 
 3、将ixdba这个目录进行分割压缩，每个分割压缩包大小设定为100M,并指定压缩包的名称为ixdba.tar.bz2,请用一条命令组合实现。
+split -b 100M -d -a 3 /ixdba ../ixdba_part | tar | bzip2 -9vk
