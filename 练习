@@ -1,0 +1,12 @@
+1、简单描述"ls 1>/dev/null 2>/dev/null"和"ls >/dev/null 2>&1"表示的含义，以及它们之间的异同？
+ls 1>/dev/null 2>/dev/null
+意思是ls 1>/dev/null;ls 2>/dev/null把ls的标准输出和错误输出都重定向到黑洞
+
+ls >/dev/null 2>&1
+意思是把ls的标准输出重定向到黑洞，把错误输出等同于标准输出处理
+
+2、列出linux系统中由root用户启动的进程，并且计算这些进程的个数，用一条命令组合实现。
+ps -U root | wc -l
+
+ps -ef | grep root |wc -l
+
