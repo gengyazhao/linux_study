@@ -1,0 +1,11 @@
+split命令用来分割文档，将一个文件分成数个。
+split [options] [input_file] [output_file]
+
+-b size 指定分割出来的文件大小，size可加入单位，b代表512bytes，k代表1KB，m代表1MB
+-n   这里n指定分割的每个文件的长度，缺省为1000行
+-d  将split命令生成的文件序列以数字形式命名
+-a  指定split命令生成的文件序列的长度，默认长度为2
+
+split -b 10M log  log_split
+
+split -b 2M -d -a 3 /opt/etc.zip /opt/etc.zip_split
