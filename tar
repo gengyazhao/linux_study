@@ -1,0 +1,38 @@
+tar对文件或者目录进行打包归档，归成一个文件，但是并不进行压缩。
+tar [主选项+辅助选项] 文件或者目录
+
+-c  创建新的文件
+-r  把要归档的文件追加到档案文件末尾
+-t  列出档案文件中已经归档的文件列表
+-x  从打包的档案文件中还原出文件
+-u  更新档案文件，用新的文件替换档案中的原始文件
+-z  调用gzip命令在文件打包的过程中进行压缩/解压文件
+-w  在还原文件时，把所有文件的修改时间设定为现在时间
+-j  调用bzip2命令在文件打包的过程中进行压缩/解压文件
+-Z  调用compress命令过滤档案
+-f  -f选项后面紧跟档案文件的存储设备，默认是磁盘，需要指定档案文件名；如果是磁带，只需指定磁带设备名。-f必须是tar命令的最后一个选项。
+-v  指定在创建归档文件过程中，显示各个归档文件的名称
+-p  在文件归档的过程中，保持文件的属性不发生变化
+-N "yyyy/mm/dd" 在指定日期之后的文件才会被打包到档案文件中
+-exclude file 在打包过程中，不将指定file文件打包
+
+
+将/etc目录下的所有文件打包，并显示打包的详细文件，设置打包文件名为etc.tar，同时保存文件到/opt目录下
+tar -cvf /opt/etc.tar /etc
+
+将/etc目录下的所有文件打包并压缩，并显示打包的详细文件，设置打包文件名为etc.tar.gz，同时保存文件到/opt目录下
+tar -zcvf /opt/etc.tar.gz /etc
+tar -jcvf /opt/etc.tar.bz2 /etc
+
+查看上面/opt/etc.tar.gz压缩包的内容
+tar -ztvf /opt/etc.tar.gz
+tar -jtvf /opt/etc.tar.bz2
+
+tar -ztvf /opt/etc.tar.gz | more
+
+将/opt/etc.tar.gz解压到/usr/local/src下
+cd /usr/local/src
+tar -zxvf /opt/etc.tar.gz
+
+或者：tar -zxvf /opt/etc.tar.gz /usr/local/src/
+
