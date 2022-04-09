@@ -6,6 +6,6 @@ split [options] [input_file] [output_file]
 -d  将split命令生成的文件序列以数字形式命名
 -a  指定split命令生成的文件序列的长度，默认长度为2
 
-split -b 10M log  log_split
+split -b 10m log  log_split
 
-split -b 2M -d -a 3 /opt/etc.zip /opt/etc.zip_split
+split -b 2m -d -a 3 /opt/etc.zip /opt/etc.zip_split
