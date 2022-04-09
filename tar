@@ -36,3 +36,21 @@ tar -zxvf /opt/etc.tar.gz
 
 或者：tar -zxvf /opt/etc.tar.gz /usr/local/src/
 
+将/etc目录下所有文件打包备份到/opt目录下，并保存每个文件的权限
+tar -zcvpf /opt/etc.tar.gz /etc
+
+在/opt目录下，仅解开/opt/etc.tar.gz压缩文件中的/etc/inittab文件
+cd /opt
+tar -zxvf /opt/etc.tar.gz etc/inittab
+
+打包备份/var/log目录中2020/1/1日以后的文件。
+tar -N "2020/1/1" -zcvf log.tar.gz /var/log
+
+打包备份/home目录和/etc目录，但是不备份/home下的ixdba目录
+tar -zcvf bkp.tar.gz /home/* /etc -exclude /home/ixdba
+
+将/etc目录打包压缩后直接解压到/opt目录下，而不生成打包的档案文件。
+cd /opt
+tar -zcvf - /etc | tar -zxvf -
+紧跟在f后面的"-"是将创建的档案文件输出到标准输出上，"|"在linux下表示管道符，命令最后的"-"表示将tar命令通过管道传入的档案文件作为需要解压的数据来源。
+
