@@ -10,6 +10,22 @@ ps -U root | wc -l
 ps -ef | grep root |wc -l
 
 3、将ixdba这个目录进行分割压缩，每个分割压缩包大小设定为100M,并指定压缩包的名称为ixdba.tar.bz2,请用一条命令组合实现。
-split -b 100m -d -a 3 /home/ixdba/* ../ixdba_part | tar -zcvf /ixdba.tar.bz2 
-
  tar -zcf - ixdba | split -b 100m -d -a 3 - ixdba.tar.bz2
+ 
+4、如何用命令查看linux系统的IP地址，如何关闭某块网卡，如何启用某块网卡，写出具体的命令。
+ifconfig
+ifconfig eth0 down
+ifconfig eth0 up
+
+5、如何查看一个目录的总大小，如何查看某个磁盘分区的大小，写出具体命令。
+du -sh /etc
+df -h /dev/sda2
+
+6、如何将一个linux上的某个文件通过系统命令传输到另一个linux系统上，写出两种命令操作方式。
+scp root@x.x.x.x:/home/user1/a.txt /home
+scp /home/user1/a.txt root@x.x.x.x:/home
+
+mkdir /mnt/user1
+mount -t nfs -w x.x.x.x:/home/user1 /mnt/user1
+cp /mnt/user1/a.txt /home
+umount -v /mnt/user1
