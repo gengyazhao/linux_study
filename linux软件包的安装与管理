@@ -43,3 +43,124 @@ make -f make_file
 在命令行输入make install命令，开始安装软件，安装进程会首先创建安装目录，如果没有指定安装目录，安装程序默认会安装在系统的/usr/local目录下创建安装目录。
 
 
+RPM包安装
+RPM就Red Hat Package Manager的缩写，本意是Redhat软件包管理，后成为linux平台下通用的软件包管理方式，
+通过RPM方式安装的软件，RPM工具都会记录软件的安装信息，这样方便了软件日后的查询，升级和卸载。
+
+RPM包管理方式的缺点是对操作系统环境的依赖很大，RPM包的安装环境必须与RPM包封装时的环境一致或相当。还需要满足安装时与系统某些软件包的依赖关系，例如A依赖B和C，则必须先安装B和C软件。
+RPM包的封装格式一般有两种，分别是RPM和SRPM，SRPM包也是一种RPM，但是它包含了编译时的源码文件和一些编译指定的参数文件，
+因而在使用的时候需要重新进行编译，通常SRPM对应的RPM文件类似于xxx.src.rpm格式。
+
+例如：nxserver-2.1.0-22.i386.rpm
+其中nxserver表示软件名称
+2.1.0表示软件版本号
+22表示软件更新发行的次数
+i386表示适合硬件的平台(noarch表示这个软件包与硬件构架无关，可以通用)
+.rpm是软件包的格式标识
+
+一般的RPM封装包的命名格式都有这五个部分组成，由于SRPM包是需要编译才能使用，因此没有硬件平台选项，其它与RPM包命令格式完全一样。
+注意：i386软件包可以在任意x86平台下使用，无论是i686或是x86_64的机器；相反，i686的软件包不一定能在i386硬件上面使用。
+
+RPM工具的使用分为安装、查询、验证、更新、删除等操作。
+安装软件包：rpm -i [辅助选项] file1.rpm file2.rpm
+-i:install，也可以使用"--install"
+常用辅助选项：
+-v  显示附加信息
+-h  安装时输出标记"#"
+--test  只对安装进行测试，并不实际安装
+--nodeps  不检查软件之间的依赖关系，加入此选项可能会导致软件不可用
+--force   忽略软件包以及软件冲突
+--replacepkgs 强制重新安装已经安装的软件包
+--prefix      将软件包安装到指定的路径下
+--percent     以百分比的形式输出安装的进度
+--excludedocs 不安装软件包中的说明文件
+--includedocs 安装软件包，包含说明文件
+
+举例：
+rpm -ivh ipvsadm-1.24-6.i386.rpm
+
+安装xxx.src.rpm，以my-package.src.rpm为例：
+在redhat linux i386平台下进行，常用的有两种方法。
+方法一：
+rpm -i my-package.src.rpm
+cd /usr/src/redhat/SPECS
+rpmbuild -bp my-package.specs #一个和软件包同名的specs文件
+cd /usr/src/redhat/BUILD/my-package/  #一个软件包同名的目录
+./configure
+make
+make install
+
+方法二：
+rpm -i my-package.src.rpm
+cd /usr/src/redhat/SPECS
+rpmbuild -bb my-package.specs #一个和软件包同名的specs文件
+#此时，在/usr/src/redhat/RPM/i386/目录下，有一个或者两个新的rpm包，这个是编译好的二进制文件。这里路径根据具体包的不同，也可能是i686、noarch等等。
+rpm -i new-package.rpm  #安装完成
+
+查询软件包
+rpm -q [辅助选项] package1 package2
+-q  query的意思，也可以使用--query。package1,package2为已经安装的软件包名称。
+
+辅助选项说明：
+-f  查询操作系统中某个文件属于哪个对应的rpm软件包
+rpm -qf /bin/bash
+结果：bash-3.0-19.2
+-p  查询以.rpm为后缀的软件包安装后对应的包名称
+rpm -qp gcc-3.4.4-2.i386.rpm
+结果：gcc-3.4.4-2
+-l  显示软件包中所有文件列表 。此选项后面跟软件包安装后对应的包名，不是以.rpm为后缀的完整名。
+rpm -ql gcc-3.4.4-2
+-i  显示软件包的概要信息，如软件名称、版本、适应平台、大小等等。此选项后面跟完整包名，以.rpm结尾。
+rpm -qi gcc-3.4.4-2.i386
+或者
+rpm -qpi gcc-3.4.4-2.i386.rpm
+这里由于用到了-p选项，首先显示出了安装后的软件包名，所以-i选项后可跟.rpm结尾的软件包。
+-d  显示软件包中说明文件列表，RPM将软件包中的文件分为三类，一类是配置文件，一类是说明文件，一类是可执行文件。后面跟完整的包名，以.rpm结尾。
+rpm -qd file-4.10-2
+-s  与-l选项类似，除了显示软件包中的所有文件列表信息，而且还显示每个文件的状态。
+RPM已安装的软件包中各个文件拥有四种状态：normal、not installed、replaced、netshared
+-R  或--requires，显示软件包所需的功能，所谓功能，可以是软件包标识，也可以是共享动态文件等等，软件包的依赖关系就是依靠功能来实现的。
+
+更新软件包
+rpm -U [辅助选项] file1.rpm file2.rpm
+-U  upgrade
+辅助选项说明
+--oldpackage  表示允许降级到一个老版本。
+
+删除软件包
+rpm -e [辅助选项] package1 package2
+-e  erase
+辅助选项说明
+--nodeps  不检查依赖性
+举例：
+删除rsh软件包
+rpm -q rsh
+结果：rsh-0.17-37.el5
+rpm -e rsh-0.17-37.el5
+
+
+
+
+
+二进制软件安装方式
+二进制软件包提供了很多类型的打包方式，最常见的有RPM格式包，还有.tar.gz、.tgz、.bz2等形式的二进制软件包，最后还有一个就是提供安装程序进行安装的二进制软件包。
+安装.tar.gz、.bz2二进制软件包，安装其实就是简单的解压过程。根据不同的软件打包格式，解压即可。
+
+提供安装程序的软件包
+这类软件包都提供了安装脚本或者安装向导程序，只需在下载后解压，然后进入安装目录，找到类似的setup、install、install.sh之类的可执行文件即可。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
