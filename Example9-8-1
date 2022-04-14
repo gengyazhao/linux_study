@@ -1,0 +1,27 @@
+[root@linux]$ cat Example9-8.sh
+#!/bin/bash
+#当$IFS为空时的$*和$@
+#如果$IFS被设置为空时，那么"$*"和"$@"将不会像期望那样echo出位置参数
+
+mecho ()#Echo位置参数
+{
+echo "$1,$2,$3";
+}
+
+IFS=""#设置为空
+set a b c
+mecho "$*"      #abc,,
+
+mecho $*        #a,b,c
+
+mecho "$@"      #a,b,c
+
+mecho $@        #a,b,c
+
+#当$IFS设置为空时，$*和$@的行为依赖于正在运行的Bash的版本。
+exit 0
+[root@linux]$ ./Example9-8.sh
+a#b#c,,
+a,b,c
+a,b,c
+a,b,c
