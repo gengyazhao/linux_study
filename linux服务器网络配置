@@ -1,1 +1,10 @@
+不同linux发行版本的网络配置文件
+linux的网络配置文件一般都在/etc目录下，但是根据发行版本的不同，网络配置文件的路径略有不同。
+RHEL/Centos 的配置文件路径为：
+配置IP地址、子网掩码等  /etc/sysconfig/network-scripts/ifcfg-ethN
+回环地址  /etc/sysconfig/network-scripts/ifcfg-lo
+DNS       /etc/resolv.conf
+Host      /etc/hosts
 
+SUSE的配置文件路径：
+配置IP地址、子网掩码等    /etc/sysconfig/network/ifcfg-eth-id-Hwaddr  (Hwaddr为网卡的MAC地址)
