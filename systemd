@@ -1,0 +1,55 @@
+系统服务管理工具systemd
+systemd在系统中是一个用户级的应用程序。它不仅能完成系统的初始化工作，还能对系统和服务进行管理。并且systemd能够兼容sysvinit和linux标准组的启动脚本。
+systemd包含一个完整的软件包，配置文件位于/etc/systemd目录下，配置工具命令位于/bin、/sbin这两个目录下，备用配置文件位于/lib/systemd目录下。
+可通过命令rpm -ql systemd查看所有文件的安装路径。
+
+systemd提供了一个非常强大的命令行工具systemctl。可以查看、启动、停止、重启、启用或者禁用系统服务。
+启动一个服务(启动httpd服务，也就是Apache Http服务器，要停掉它，需要以root用户权限执行)
+systemctl start httpd.service
+停止一个服务
+systemctl stop httpd.service
+重启服务(restart如果服务在运行，将重启服务；如果服务不在运行，将启动服务)
+systemctl restart httpd.service
+重启服务(try-start只会在服务已经运行的状态下重启服务。同时也可以使用reload选项，它会重新加载配置文件。）
+systemctl try-restart httpd.service
+systemctl reload httpd.service
+
+systemctl命令可以启用、禁用服务，可以使用enable/disable选项来控制一个服务是否开机启动。
+打开httpd服务开机自启动功能
+systemctl enable httpd.service
+关闭httpd服务
+systemctl disable httpd.service
+查看服务运行状态
+systemctl status httpd.service
+
+
+
+
+
+
+systemd命令和sysvinit命令对比
+sysvinit命令                  systemd命令                                     
+service httpd start           systemctl start httpd.service                 启动服务  
+service httpd stop            systemctl stop httpd.service                  关闭服务
+service httpd restart         systemctl restart httpd.service               重启服务，不管服务是否启动或关闭
+service httpd reload          systemctl reload httpd.service                重新载入httpd配置信息而不中断服务         
+service httpd condrestart     systemctl condrestart httpd.service           重启httpd服务，如果服务没有运行，condrestart无法启动服务     
+service httpd status          systemctl status httpd.service                查看httpd服务的运行状态  
+chkconfig httpd on            systemctl enable httpd.service                设置httpd服务开机自启动                                                 
+chkconfig httpd off           systemctl disable httpd.service               禁止httpd服务开机自启动                                     
+chkconfig httpd               systemctl is-enabled httpd.service            检查httpd服务在当前环境下是启用还是禁用                      
+chkconfig --list              systemctl list-unit-files --type=service      输出在各个运行级别下所有服务的启用和禁用情况               
+chkconfig httpd --list        ls /etc/systemd/system/*.wants/httpd.service  查看httpd服务在各个运行级别下的启用和禁用情况         
+chkconfig httpd --add         systemctl daemon-reload                       创建一个新服务文件或者变更配置时使用  
+
+
+
+
+
+
+systemctl 电源管理命令
+systemctl poweroff	关闭系统
+systemctl reboot		重启系统
+systemctl suspend		进入待机模式
+systemctl hibernate	进入休眠模式
+systemctl hybrid-sleep	进入混合休眠模式
