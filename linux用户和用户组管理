@@ -1,0 +1,39 @@
+linux用户归属于用户组，同一用户组的用户对公共文件拥有相同的用户权限。
+
+uid信息文件 /etc/passwd
+用户名:密码:uid:gid:description:home_directory:bash_file
+gid信息文件 /etc/group
+
+用户查询常用命令：
+id  查询当前登陆用户gid,uid
+finger  查询当前用户属性信息
+
+
+useradd 新增用户
+useradd [options] user_name
+-d  directory,设置用户的家目录
+-m  make_directory,设置的家目录不存在时自动创建
+-u  设置用户uid
+-g  设置用户gid
+-s  指定用户的shell,举例-s /bin/csh
+
+/etc/default/useradd  默认配置文件
+
+userdel user_name     删除用户
+userdel -r user_name  删除用户同时删除用户家目录
+
+passwd user_name  用于设置和修改用户密码
+
+usermod 修改用户属性
+usermod -d  修改用户家目录
+usermod -g  修改用户初始用户组
+
+groupadd  新增用户组
+-g  指定用户组id
+
+groupdel  删除用户组
+
+groupmod  修改用户组属性
+-g  修改组id
+-n  修改组名
+
