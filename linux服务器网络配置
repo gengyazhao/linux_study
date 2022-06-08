@@ -8,3 +8,20 @@ Host      /etc/hosts
 
 SUSE的配置文件路径：
 配置IP地址、子网掩码等    /etc/sysconfig/network/ifcfg-eth-id-Hwaddr  (Hwaddr为网卡的MAC地址)
+
+route   查询本机路由表
+
+新增路由
+route add -net/host destination netmask gw/interface
+route add -net 1.1.1.0  netmask 255.255.255.0 dev eth3
+route add -host 1.1.1.1 dev eth1
+
+修改路由配置文件，需要重启网络服务才能生效
+/etc/sysconfig/network/routes
+
+侦测网络
+ping -c num ip
+traceroute ip
+
+
+
