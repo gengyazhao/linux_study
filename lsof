@@ -1,0 +1,4 @@
+lsof    显示系统打开的文件
+lsof filename   显示打开指定文件的所有进程
+lsof -c string  显示以指定字符开头的进程所有打开的文件
+lsof -u username    显示所属user相关进程打开的文件
