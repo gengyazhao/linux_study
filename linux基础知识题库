@@ -1,3 +1,7 @@
+gcc -c只编译不链接，仅生成目标文件。
+POSIX 信号量的引用头文件是"<semaphore.h>"，而System V 信号量的引用头文件是"<sys/sem.h>"
+
+
 使用命令 rpm -e 包名			卸载软件包
 
 我们在Linux 系统上编写多线程程序，需要在程序中引入 <pthread.h> 头文件
