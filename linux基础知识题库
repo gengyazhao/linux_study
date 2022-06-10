@@ -44,3 +44,230 @@ INT中断、 QUIT退出、 KILL强制退出、TERM终止、STOP暂停。
 4、共享内存：使得多个进程可以访问同一块内存空间，是最快的可用IPC形式。往往与其它通信机制，如信号量结合使用， 来达到进程间的同步及互斥。
 5、信号量（semaphore）：主要作为进程间以及同一进程不同线程之间的同步手段。
 6、套接字（Socket）：更为一般的进程间通信机制，可用于不同机器之间的进程间通信。
+
+buffered I/O库函数(fread, fwrite等,用户空间)
+unbuffered I/O系统调用(五个文件io函数，open，read，write，lseek，close；内核空间)
+
+buffered IO指的是在内核和用户程序之间设置了一层缓冲区，用来提高IO读写的效率；
+读取：硬盘--->内核缓冲区--->用户缓冲区--->用户程序
+写回：用户程序--->用户缓冲区--->内核缓冲区--->硬盘
+
+unbuffered IO
+读取：硬盘--->内核缓冲区--->用户程序
+写回：用户程序--->内核缓冲区--->硬盘
+
+direct Io 才是真正的什么缓冲区都没有，直接与硬盘交互；
+
+读取：硬盘--->用户程序
+写回：用户程序--->硬盘
+
+ioctl命令码
+设备类型 | 序列号 | 方向 |数据尺寸|
+ 8 bit   | 8 bit  |2 bit |8~14 bit|
+ ioctl定义命令
+ //nr为序号，datatype为数据类型,如int
+_IO(type, nr ) //没有参数的命令
+_IOR(type, nr, datatype) //从驱动中读数据
+_IOW(type, nr, datatype) //写数据到驱动
+_IOWR(type,nr, datatype) //双向传送
+
+crontab	管理周期计划任务
+at			定时任务
+
+du	disk usage	显示每个文件和目录的磁盘使用空间。
+
+df（英文全拼：disk free）用来检查linux服务器的文件系统的磁盘空间占用情况。可以利用该命令来获取硬盘被占用了多少空间，目前还剩下多少空间等信息。
+df 命令的哪个参数显示文件系统信息	h
+
+cut	cut命令用于显示每行从开头算起 num1 到 num2 的文字
+-b ：以字节为单位进行分割。这些字节位置将忽略多字节字符边界，除非也指定了 -n 标志。
+-c ：以字符为单位进行分割。
+-d ：自定义分隔符，默认为制表符。
+-f ：与-d一起使用，指定显示哪个区域。
+-n ：取消分割多字节字符（比如中文）。仅和 -b 标志一起使用。
+
+-b是半角，如果有中文将乱码。-c全角，适用中文
+
+
+
+AWK 是一种处理文本文件的语言，是一个强大的文本分析工具。
+awk [选项参数] 'script' var=value file(s)
+或
+awk [选项参数] -f scriptfile var=value file(s)
+
+-F fs or --field-separator fs
+指定输入文件折分隔符，fs是一个字符串或者是一个正则表达式，如-F:。
+-v var=value or --asign var=value
+赋值一个用户定义变量。
+-f scripfile or --file scriptfile
+从脚本文件中读取awk命令。
+-mf nnn and -mr nnn
+对nnn值设置内在限制，-mf选项限制分配给nnn的最大块数目；-mr选项限制记录的最大数目。这两个功能是Bell实验室版awk的扩展功能，在标准awk中不适用。
+-W compact or --compat, -W traditional or --traditional
+在兼容模式下运行awk。所以gawk的行为和标准的awk完全一样，所有的awk扩展都被忽略。
+-W copyleft or --copyleft, -W copyright or --copyright
+打印简短的版权信息。
+-W help or --help, -W usage or --usage
+打印全部awk选项和每个选项的简短说明。
+-W lint or --lint
+打印不能向传统unix平台移植的结构的警告。
+-W lint-old or --lint-old
+打印关于不能向传统unix平台移植的结构的警告。
+-W posix
+打开兼容模式。但有以下限制，不识别：/x、函数关键字、func、换码序列以及当fs是一个空格时，将新行作为一个域分隔符；操作符**和**=不能代替^和^=；fflush无效。
+-W re-interval or --re-inerval
+允许间隔正则表达式的使用，参考(grep中的Posix字符类)，如括号表达式[[:alpha:]]。
+-W source program-text or --source program-text
+使用program-text作为源代码，可与-f命令混用。
+-W version or --version
+打印bug报告信息的版本。
+
+awk -F  #-F相当于内置变量FS, 指定分割字符
+FNR	各文件分别计数的行号
+NF	一条记录的字段的数目
+NR	已经读出的记录数，就是行号，从1开始
+获取最后一列	可以使用awk -F',' '{print $NF}' 来获取
+
+
+IF条件判断
+if [ command ];then
+   符合该条件执行的语句
+elif [ command ];then
+   符合该条件执行的语句
+else
+   符合该条件执行的语句
+fi
+[  ]表示条件测试。注意这里的空格很重要。要注意在'['后面和']'前面都必须要有空格
+常用参数：
+文件/目录判断：
+[ -a FILE ] 如果 FILE 存在则为真。 
+[ -b FILE ] 如果 FILE 存在且是一个块文件则返回为真。
+[ -c FILE ] 如果 FILE 存在且是一个字符文件则返回为真。
+[ -d FILE ] 如果 FILE 存在且是一个目录则返回为真。 
+[ -e FILE ] 如果 指定的文件或目录存在时返回为真。
+[ -f FILE ] 如果 FILE 存在且是一个普通文件则返回为真。
+[ -g FILE ] 如果 FILE 存在且设置了SGID则返回为真。
+[ -h FILE ] 如果 FILE 存在且是一个符号符号链接文件则返回为真。（该选项在一些老系统上无效）
+[ -k FILE ] 如果 FILE 存在且已经设置了冒险位则返回为真。
+[ -p FILE ] 如果 FILE 存并且是命令管道时返回为真。
+[ -r FILE ] 如果 FILE 存在且是可读的则返回为真。
+[ -s FILE ] 如果 FILE 存在且大小非0时为真则返回为真。
+[ -u FILE ] 如果 FILE 存在且设置了SUID位时返回为真。
+[ -w FILE ] 如果 FILE 存在且是可写的则返回为真。（一个目录为了它的内容被访问必然是可执行的）
+[ -x FILE ] 如果 FILE 存在且是可执行的则返回为真。
+[ -O FILE ] 如果 FILE 存在且属有效用户ID则返回为真。
+[ -G FILE ] 如果 FILE 存在且默认组为当前组则返回为真。（只检查系统默认组）
+[ -L FILE ] 如果 FILE 存在且是一个符号连接则返回为真。 
+[ -N FILE ] 如果 FILE 存在 and has been mod如果ied since it was last read则返回为真。 
+[ -S FILE ] 如果 FILE 存在且是一个套接字则返回为真。
+[ FILE1 -nt FILE2 ] 如果 FILE1 比 FILE2 新, 或者 FILE1 存在但是 FILE2 不存在则返回为真。 
+[ FILE1 -ot FILE2 ] 如果 FILE1 比 FILE2 老, 或者 FILE2 存在但是 FILE1 不存在则返回为真。
+[ FILE1 -ef FILE2 ] 如果 FILE1 和 FILE2 指向相同的设备和节点号则返回为真。
+
+
+字符串判断
+[ -z STRING ]    如果STRING的长度为零则返回为真，即空是真
+[ -n STRING ]    如果STRING的长度非零则返回为真，即非空是真
+[ STRING1 ]　   如果字符串不为空则返回为真,与-n类似
+[ STRING1 == STRING2 ]   如果两个字符串相同则返回为真
+[ STRING1 != STRING2 ]    如果字符串不相同则返回为真
+[ STRING1 < STRING2 ]     如果 “STRING1”字典排序在“STRING2”前面则返回为真。 
+[ STRING1 > STRING2 ]     如果 “STRING1”字典排序在“STRING2”后面则返回为真。 
+
+
+数值判断
+[ INT1 -eq INT2 ]          INT1和INT2两数相等返回为真 ,=
+[ INT1 -ne INT2 ]          INT1和INT2两数不等返回为真 ,<>
+[ INT1 -gt INT2 ]           INT1大于INT2返回为真 ,>
+[ INT1 -ge INT2 ]          INT1大于等于INT2返回为真,>=
+[ INT1 -lt INT2 ]            INT1小于INT2返回为真 ,<
+[ INT1 -le INT2 ]           INT1小于等于INT2返回为真,<=
+
+
+逻辑判断
+[ ! EXPR ]       逻辑非，如果 EXPR 是false则返回为真。
+[ EXPR1 -a EXPR2 ]      逻辑与，如果 EXPR1 and EXPR2 全真则返回为真。
+[ EXPR1 -o EXPR2 ]      逻辑或，如果 EXPR1 或者 EXPR2 为真则返回为真。
+[  ] || [  ]           用OR来合并两个条件
+[  ] && [  ]        用AND来合并两个条件
+
+
+其他判断
+[ -t FD ]  如果文件描述符 FD （默认值为1）打开且指向一个终端则返回为真
+[ -o optionname ]  如果shell选项optionname开启则返回为真
+
+
+
+
+1. 查看远程分支	git branch -a
+2. 查看本地分支	git branch
+3. 切换分支			git checkout -b v0.1ver origin/v0.1ver
+切换回master主分支	git checkout master
+git merge : 合并分支
+git pull : 拉取最新代码
+git push “仓库地址”： 提交代码
+git commit -m “日志” ： 将暂存区 文件提交至仓库区
+git clone ： 克隆仓库(会下载在本地)
+git remote ： 查看当前的远程库
+git fetch : 从远程仓库下载新分支与数据
+
+
+linux给指定用户发送消息
+首先，可使用w或who命令查看当前登录的用户信息；
+然后，使用write命令将信息发送到用户的终端上，用法步骤如下：
+
+1、write + shh登陆用户名+ttyname(例如pts/1)
+2、ENTER
+3、输入信息（所要发送的消息，中文可能会乱码）。
+4、EOF
+5、CTRL+D
+6、结束
+
+
+初始化互斥锁 pthread_mutex_init
+锁定互斥锁 pthread_mutex_lock
+解除锁定互斥锁 pthread_mutex_unlock
+使用非阻塞互斥锁锁定 pthread_mutex_trylock
+销毁互斥锁 pthread_mutex_destroy
+使互斥锁保持一致 pthread_mutex_consistent_np
+
+ifconfig命令作用范围
+1，配置本地回环地址
+2，配置网卡的IP地址
+3，激活网络适配器
+
+网卡的驱动程序是作为模块加载到内核中的
+
+SWAP就是LINUX下的虚拟内存分区，它的作用是在物理内存使用完之后,将磁盘空间(也就是SWAP分区)虚拟成内存来使用 。
+
+shutdown
+-r：关机后立即重新启动
+-h：关机后不重新启动
+
+halt 关闭系统
+
+
+ kill（pid_t pid, int signum）
+ pid: > 0:发送信号给指定进程
+​ = 0：发送信号给跟调用kill函数的那个进程处于同一进程组的进程。
+​ < -1: 取绝对值，发送信号给该绝对值所对应的进程组的所有组员。
+​ = -1：发送信号给，有权限发送的所有进程。
+
+
+
+在shell中变量的赋值有五种 ：使用 read 命令，直接赋值，使用命令行参数，使用命令行的输出结果，从文件读取
+1. 直接赋值，格式为：变量名 = 变量值
+2.Read 命令是系统内置命令，语法格式为： read  变量 1   变量 2
+3. 使用命令行参数赋值：  $ 命令   参数 1   参数 2  参数 3
+4. 利用命令的输出结果赋值：
+currentdir=`pwd`  
+echo $currentdir
+5. 从文件中读入数据：
+#!/bin/bash
+ls *.sh >execfile
+while read LINE
+do
+chmod a+x $LINE
+done<execfile
+
+
