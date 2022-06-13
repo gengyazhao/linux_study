@@ -103,6 +103,36 @@ IGNORECASE	如果为真，则进行忽略大小写的匹配
 NF	一条记录的字段的数目
 NR	已经读出的记录数，就是行号，从1开始
 
+使用正则，字符串匹配
+# 输出第二列包含 "th"，并打印第二列与第四列
+$ awk '$2 ~ /th/ {print $2,$4}' log.txt
+---------------------------------------------
+this a
+~ 表示模式开始。// 中是模式。
+
+# 输出包含 "re" 的行
+$ awk '/re/ ' log.txt
+---------------------------------------------
+3 Do you like awk
+10 There are orange,apple,mongo
+忽略大小写
+$ awk 'BEGIN{IGNORECASE=1} /this/' log.txt
+---------------------------------------------
+2 this is a test
+This's a test
+模式取反
+$ awk '$2 !~ /th/ {print $2,$4}' log.txt
+---------------------------------------------
+Are like
+a
+There orange,apple,mongo
+$ awk '!/th/ {print $2,$4}' log.txt
+---------------------------------------------
+Are like
+a
+There orange,apple,mongo
+
+
 
 
 
