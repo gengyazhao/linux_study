@@ -17,3 +17,122 @@ d ：删除，因为是删除啊，所以 d 后面通常不接任何东东；
 i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；
 p ：打印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行～
 s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法！例如 1,20s/old/new/g 就是啦！
+
+
+实例
+我们先创建一个 testfile 文件
+cat <<EOF >testfile
+HELLO LINUX!  
+Linux is a free unix-type opterating system.  
+This is a linux testfile!  
+Linux test 
+Google
+Taobao
+Runoob
+Tesetfile
+Wiki
+EOF
+
+
+在 testfile 文件的第四行后添加一行，并将结果输出到标准输出，在命令行提示符下输入如下命令：
+sed -e 4a\newLine testfile 
+如果是要在第四行前，命令如下：
+nl testfile | sed '4i newLine' 
+
+如果是要增加两行以上，在第二行后面加入两行字，例如 Drink tea or ..... 与 drink beer?
+nl testfile | sed '2a Drink tea or ......\
+drink beer ?'
+#每一行之间都必须要以反斜杠 \ 来进行新行标记。
+
+
+以行为单位的新增/删除
+将 testfile 的内容列出并且列印行号，同时，请将第 2~5 行删除！
+nl testfile | sed '2,5d'
+#注意，此处是n+小写L，不是数字1
+
+要删除第 3 到最后一行：
+nl testfile | sed '3,$d' 
+
+
+以行为单位的替换与显示
+将第 2-5 行的内容取代成为 No 2-5 number 呢？
+nl testfile | sed '2,5c No 2-5 number'
+
+仅列出 testfile 文件内的第 5-7 行：
+nl testfile | sed -n '5,7p'
+
+数据的搜寻并显示
+搜索 testfile 有 oo 关键字的行:
+nl testfile | sed -n '/oo/p'
+
+
+数据的搜寻并删除
+删除 testfile 所有包含 oo 的行，其他行输出
+nl testfile | sed  '/oo/d'
+
+数据的搜寻并执行命令
+搜索 testfile，找到 oo 对应的行，执行后面花括号中的一组命令，每个命令之间用分号分隔，这里把 oo 替换为 kk，再输出这行：
+nl testfile | sed -n '/oo/{s/oo/kk/;p;q}' 
+#最后的 q 是退出。
+
+
+
+
+
+数据的查找与替换
+除了整行的处理模式之外， sed 还可以用行为单位进行部分数据的查找与替换<。
+sed 的查找与替换的与 vi 命令类似，语法格式如下：
+sed 's/要被取代的字串/新的字串/g'
+
+将 testfile 文件中每行第一次出现的 oo 用字符串 kk 替换，然后将该文件内容输出到标准输出:
+sed -e 's/oo/kk/' testfile
+
+g 标识符表示全局查找替换，使 sed 对文件中所有符合的字符串都被替换，修改后内容会到标准输出，不会修改原文件：
+sed -e 's/oo/kk/g' testfile
+
+选项 i 使 sed 修改文件:
+sed -i 's/oo/kk/g' testfile
+
+批量操作当前目录下以 test 开头的文件：
+sed -i 's/oo/kk/g' ./test*
+
+
+多点编辑
+一条 sed 命令，删除 testfile 第三行到末尾的数据，并把 HELLO 替换为 RUNOOB 
+nl testfile | sed -e '3,$d' -e 's/HELLO/RUNOOB/'
+#-e 表示多点编辑，第一个编辑命令删除 testfile 第三行到末尾的数据，第二条命令搜索 HELLO 替换为 RUNOOB。
+
+
+直接修改文件内容(危险动作)
+sed 可以直接修改文件的内容，不必使用管道命令或数据流重导向！ 不过，由于这个动作会直接修改到原始的文件，所以请你千万不要随便拿系统配置来测试！
+$ cat regular_express.txt 
+runoob.
+google.
+taobao.
+facebook.
+zhihu-
+weibo-
+
+利用 sed 将 regular_express.txt 内每一行结尾若为 . 则换成 !
+sed -i 's/\.$/\!/g' regular_express.txt
+
+利用 sed 直接在 regular_express.txt 最后一行加入 # This is a test
+sed -i '$a # This is a test' regular_express.txt
+由於 $ 代表的是最后一行，而 a 的动作是新增，因此该文件最后新增 # This is a test！
+
+
+
+获取IP地址
+$ /sbin/ifconfig eth0
+eth0 Link encap:Ethernet HWaddr 00:90:CC:A6:34:84
+inet addr:192.168.1.100 Bcast:192.168.1.255 Mask:255.255.255.0
+inet6 addr: fe80::290:ccff:fea6:3484/64 Scope:Link
+UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
+.....(以下省略).....
+
+本机的 ip 是 192.168.1.100。将 IP 前面的部分予以删除：
+$ /sbin/ifconfig eth0 | grep 'inet addr' | sed 's/^.*addr://g'
+
+接下来则是删除后续的部分，即：192.168.1.100 Bcast:192.168.1.255 Mask:255.255.255.0。
+将 IP 后面的部分予以删除:
+$ /sbin/ifconfig eth0 | grep 'inet addr' | sed 's/^.*addr://g' | sed 's/Bcast.*$//g'
