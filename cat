@@ -17,3 +17,17 @@ cat -b textfile1 textfile2 >> textfile3
 cat << EOF > f.txt
 ...
 EOF
+
+
+cat a.txt
+a
+cat b.txt
+b
+
+#cat在a.txt文件末尾追加b.txt
+cat a.txt b.txt
+a
+b
+#paste按列合并a.txt与b.txt
+paste a.txt b.txt
+a b
