@@ -6,6 +6,11 @@ RHEL/Centos 的配置文件路径为：
 DNS       /etc/resolv.conf
 Host      /etc/hosts
 
+
+重启网络服务：systemctl restart   network
+systemctl restart NetworkManager
+
+
 SUSE的配置文件路径：
 配置IP地址、子网掩码等    /etc/sysconfig/network/ifcfg-eth-id-Hwaddr  (Hwaddr为网卡的MAC地址)
 
