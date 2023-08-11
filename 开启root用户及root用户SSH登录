@@ -1,3 +1,21 @@
+在linux系统中，TCP/IP网络是通过若干个文本文件进行配置的。系统中常用和网络配置文件如下：
+/etc/sysconfig/network
+/etc/hosts
+/etc/services
+/etc/host.conf
+/etc/nsswitch.conf
+/ect/resolv.conf
+/etc/xinetd.conf
+/etc/modules.conf
+/etc/sysconfig/network-scripts/ifcfg-eth0
+
+这些文件更改会立即生效（除了/etc/sysconfig/network）
+
+/ect/sysconfig/network
+网络设置，指定
+
+
+
 Ubuntu 20.04配置ip地址：
 vim /etc/netplan/00-installer-config.yaml
 i
@@ -57,6 +75,34 @@ vim /etc/gdm/custom.conf
 AutomaticLoginEnable=True
 AutomaticLogin=root
 Esc:wq!
+
+设置centos的IP地址
+vim /etc/sysconfig/network-scripts/ifcfg-eth0
+[root@localhost network-scripts]# cat ifcfg-ens160 
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+#BOOTPROTO=dhcp
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+NAME=ens160
+UUID=2dcc4e0d-7b50-4b60-a522-c06d01019d58
+DEVICE=ens160
+#ONBOOT=yes
+BOOTPROTO=static
+ONBOOT=yes
+IPADDR=192.168.31.130
+NETMASK=255.255.255.0
+GATEWAY=192.168.31.1
+
+[root@localhost network-scripts]# cat /etc/sysconfig/network
+# Created by anaconda
+NETWORKING=yes
+GATEWAY=192.168.31.1
 
 
 
