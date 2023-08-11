@@ -31,7 +31,7 @@ netplan apply
 
 
 ubuntu设置root初始密码：
-passwd root
+sudo passwd root
 password_for_current_user
 password_for_root
 retype_password_for_root
