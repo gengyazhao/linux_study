@@ -1,0 +1,60 @@
+Ubuntu 20.04配置ip地址：
+vim /etc/netplan/00-installer-config.yaml
+i
+dhcp4: no
+dhcp6: no
+addresses: [x.x.x.x/24]
+gateway4: x.x.x.x
+nameservers:
+      addresses: [x.x.x.x,x.x.x.x]
+
+Esc:wq!
+netplan apply
+
+
+ubuntu设置root初始密码：
+passwd root
+password_for_current_user
+password_for_root
+retype_password_for_root
+
+切换root用户
+su root
+
+
+ubuntu开启Root用户SSH登录
+apt install openssh-server
+vim /etc/ssh/sshd_config
+i
+permitrootlogin yes
+Strictmodes yes
+Esc:wq!
+service ssh restart
+
+
+centos设置root用户密码：
+su      #普通用户切换到root用户权限
+passwd root      #设置root密码
+Changing password for user root.
+New password: xxxx
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password: xxxx      #重复root密码
+passwd: all authentication tokens updated successfully.
+
+
+开启Root用户SSH登录
+apt install openssh-server
+vim /etc/ssh/sshd_config
+i
+permitrootlogin yes
+Strictmodes yes
+Esc:wq!
+service ssh restart
+
+
+查询网卡地址
+ip add
+
+
+
+
