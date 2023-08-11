@@ -51,6 +51,14 @@ Strictmodes yes
 Esc:wq!
 service ssh restart
 
+开启默认登录，默认登录用户为root
+vim /etc/gdm/custom.conf 
+#在[daemon]下添加如下两行：
+AutomaticLoginEnable=True
+AutomaticLogin=root
+Esc:wq!
+
+
 
 查询网卡地址
 ip add
