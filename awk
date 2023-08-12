@@ -4,6 +4,9 @@ awk [选项参数] 'script' var=value file(s)
 或
 awk [选项参数] -f scriptfile var=value file(s)
 
+
+ll | awk '{print$8}'
+
 log.txt文本内容如下：
 
 2 this is a test
