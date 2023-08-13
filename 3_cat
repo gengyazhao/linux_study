@@ -1,5 +1,4 @@
-使用权限：所有使用者 
-使用方式：cat [-AbeEnstTuv] [--help] [--version] fileName 
+cat [-AbeEnstTuv] [--help] [--version] fileName 
 说明：把档案串连接后传到基本输出（萤幕或加 > fileName 到另一个档案）
 参数：
 -n 或 --number 由 1 开始对所有输出的行数编号
