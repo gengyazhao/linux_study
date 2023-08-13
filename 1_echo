@@ -1,0 +1,15 @@
+echo作用：
+1、显示字符串  echo "hello world!"
+2、显示变量  echo "$name"
+3、输出内容到文件  echo "$name" > file1
+4、显示命令执行结果  echo `date`#显示当前日期
+
+举例：
+root@ubuntu:/home/ossuser/tmp/examples# cat echo_example.sh
+#!/bin/sh
+echo "hello,XiaoLiZi"
+echo "hello\tXiaoLiZi"
+echo "hello\nXiaoLiZi"
+echo "\"\""
+echo $SHELL,$PATH
+echo "id\tname\tmsg\n01\tmike\t\"hello\"\n02\tjohn\t\"hi\""
