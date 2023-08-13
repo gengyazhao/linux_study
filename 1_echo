@@ -3,6 +3,7 @@ echo作用：
 2、显示变量  echo "$name"
 3、输出内容到文件  echo "$name" > file1
 4、显示命令执行结果  echo `date`#显示当前日期
+5、echo 输入y 和 自动回车的命令  echo y | cp /root/file.txt /root/filebkp.txt | echo -e "\n"
 
 举例：
 root@ubuntu:/home/ossuser/tmp/examples# cat echo_example.sh
