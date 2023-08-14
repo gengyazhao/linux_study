@@ -5,6 +5,12 @@
 find / -name '*vimrc'
 
 永久显示行号
+cp /etc/vimrc /etc/vimrc.bkp
+cat <<EOF>>vimrc
+set number
+EOF
+
+永久显示行号
 cd /etc
 vim vimrc（vi使用vi virc）
 set number(添加一行)
