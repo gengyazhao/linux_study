@@ -16,6 +16,17 @@ tar [主选项+辅助选项] 文件或者目录
 -N "yyyy/mm/dd" 在指定日期之后的文件才会被打包到档案文件中
 -exclude file 在打包过程中，不将指定file文件打包
 
+Examples:
+  tar -cf archive.tar foo bar  # Create archive.tar from files foo and bar.
+  tar -tvf archive.tar         # List all files in archive.tar verbosely.
+  tar -xf archive.tar          # Extract all files from archive.tar.
+  tar -rf archive.tar a.txt    # append a.txt to the end of archive.tar.
+  tar -Af archive.tar a.tar    # append a.tar to archive.tar
+  tar --delete --file=archive.tar a.txt  # delete a.txt from archive.tar
+
+
+
+
 
 将/etc目录下的所有文件打包，并显示打包的详细文件，设置打包文件名为etc.tar，同时保存文件到/opt目录下
 tar -cvf /opt/etc.tar /etc
