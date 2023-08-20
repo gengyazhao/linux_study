@@ -1,5 +1,11 @@
-退出vi
+退出vim
 :wq=:x=ZZ
+
+块操作：Block mode
+ctrl + v  vim底部会出现--VISUAL BLOCK --字样
+选中后按I，这时候输入的字符只会在第一行显示，但是按下ESC，会在多行显示。
+
+选中后按d，执行删除操作。
 
 
 i insert    插入命令
