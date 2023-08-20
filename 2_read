@@ -1,0 +1,14 @@
+read读取键盘输入内容，
+read -p "" var
+-p提示信息，var为变量名
+
+!/bin/bash
+read -p "enter the number:" num
+echo "$num"
+#模运算
+mod=$(($num%2))
+if [ $mod -eq 0 ];then
+  echo "Number $num is even"
+else
+  echo "Number $num is odd"
+fi
