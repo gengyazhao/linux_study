@@ -153,6 +153,8 @@ ZZ	这是大写的 Z 喔！若档案没有更动，则不储存离开，若档�
 :n1,n2 w [filename]	将 n1 到 n2 的内容储存成 filename 这个档案。
 :! command	暂时离开 vi 到指令行模式下执行 command 的显示结果！例如
 『:! ls /home』即可在 vi 当中察看 /home 底下以 ls 输出的档案信息！
+:w>>filename	将数据追加写入到另一个文件
+:n1,n2 w >>filename	将n1-n2的内容存储为另一个文件
 
 
 vim 环境的变更
