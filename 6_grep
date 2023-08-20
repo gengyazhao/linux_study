@@ -45,3 +45,19 @@ grep命令是linux下的文本过滤工具，grep根据指定的字符串，对�
   -x或--line-regexp   只显示全列符合的列。
   -y   此参数的效果和指定“-i”参数相同。
   --help   在线帮助。
+比如：grep “123” test.log //查看test.log中包含123字符的日志
+
+如果想查看指定内容上下几行，可以用参考下面的用法：
+
+$grep -10 ‘123’ test.log//打印匹配行的前后10行 
+或 
+$grep -C 10 ‘123’ test.log//打印匹配行的前后10行 
+或 
+$ grep -A 10 -B 10 ‘123’ test.log //打印匹配行的前后10行
+
+$grep -A 10 ‘123’ test.log //打印匹配行的后10行
+
+$grep -B 10 ‘123’ test.log//打印匹配行的前10行
+
+grep -r 'value="TLSv1.3' /export/home/ > ../temp.txt
+不能重定向到./temp.txt 重定向到当前文件夹下会导致循环
