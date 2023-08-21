@@ -1,5 +1,9 @@
 sed 命令是利用脚本来处理文本文件。
 
+#sed c\PASS_MAX_DAYS '$MAX_DAY'用c\后的新行替换符合^PASS_MAX_DAYS的行
+sed -i '/^PASS_MAX_DAYS/c\PASS_MAX_DAYS '$MAX_DAY'' ./login.defs
+
+
 语　　法：sed [-hnV][-e<script>][-f<script文件>][文本文件]
 补充说明：sed可依照script的指令，来处理、编辑文本文件。
 参　　数：
