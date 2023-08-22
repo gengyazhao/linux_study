@@ -1,0 +1,5 @@
+$FUNCNAME  在函数内部调用，当前函数的名字，函数外为NULL。
+$GROUPS  当前用户属于的组
+$HOME  用户的home目录，一般都是/home/username
+$
+$
