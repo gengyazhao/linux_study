@@ -16,3 +16,9 @@ vim vimrc（vi使用vi virc）
 set number(添加一行)
 
 route add -net 192.168.4.0/24 gw 192.168.3.100
+
+
+解决Vim插入模式下backspace按键无法删除字符的问题
+在命令模式下：
+set nocompatible
+set backspace=indent,eol,start
