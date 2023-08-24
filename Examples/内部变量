@@ -1,5 +1,73 @@
 $FUNCNAME  在函数内部调用，当前函数的名字，函数外为NULL。
 $GROUPS  当前用户属于的组
 $HOME  用户的home目录，一般都是/home/username
-$
-$
+$OLDPWD  你所在目录之前的目录
+$PPID  父进程
+$REPLY  read命令如果没有给变量，那么输入将保存在$REPLY中；下一个read 有变量，则$REPLY还是保存着上一个read命令的值。
+$SECONDS  脚本已经运行的时间，单位为秒
+
+[root@linux]$ cat 1-6example
+#!/bin/bash
+
+TIME_LIMIT=10
+#时间间隔INTERVAL；units单位
+INTERVAL=1
+
+echo
+echo "Hit Control-C to exit before $TIME_LIMIT seconds."
+echo
+
+while [ "$SECONDS" -le "$TIME_LIMIT" ]
+do
+        if [ "$SECONDS" -eq 1 ];then
+                units=second
+        else
+                units=seconds
+        fi
+
+
+        echo "This script has been running $SECONDS $units."
+
+
+        sleep $INTERVAL
+done
+
+echo -e "\a"
+
+exit 0
+
+---------------------------------------------------
+[root@linux]$ ./1-6example
+
+Hit Control-C to exit before 10 seconds.
+
+This script has been running 0 seconds.
+This script has been running 1 second.
+This script has been running 2 seconds.
+This script has been running 3 seconds.
+This script has been running 4 seconds.
+This script has been running 5 seconds.
+This script has been running 6 seconds.
+This script has been running 7 seconds.
+This script has been running 8 seconds.
+This script has been running 9 seconds.
+This script has been running 10 seconds.
+---------------------------------------------------
+
+
+[root@linux]$ cat 1-4example
+#!/bin/bash
+last_cmd_arg=$_
+echo $LINENO
+echo "At line number $LINENO,variable \"v1\" = $v1"
+echo '*************************************************'
+echo "Last command argument processed = $last_cmd_arg"
+echo $_
+
+[root@linux]$ ./1-4example
+3
+At line number 4,variable "v1" =
+*************************************************
+Last command argument processed = ./1-4example
+Last command argument processed = ./1-4example
+
