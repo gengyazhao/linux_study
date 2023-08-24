@@ -1,0 +1,12 @@
+[root@linux]$ cat 1-7example
+#!/bin/bash
+#设置超时时间为3秒
+TMOUT=3
+echo "What is your favorite song ?"
+echo "Quickly now,you noly have $TMOUT seconds to answer!"
+read song
+#-z如果字符串长度为零则为真，即空为真；-n如果字符串长度为零则为真，即非空为真
+if [ -z "$song" ];then
+        song="(no answer)"
+fi
+echo "Your favorite song is $song."
