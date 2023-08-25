@@ -30,3 +30,6 @@ b
 #paste按列合并a.txt与b.txt
 paste a.txt b.txt
 a b
+
+#批量初始化文件内容
+cat 1-1example | tee {1..9}-{1..9}example
