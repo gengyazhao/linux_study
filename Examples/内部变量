@@ -5,8 +5,8 @@ $OLDPWD  你所在目录之前的目录
 $PPID  父进程
 $REPLY  read命令如果没有给变量，那么输入将保存在$REPLY中；下一个read 有变量，则$REPLY还是保存着上一个read命令的值。
 $SECONDS  脚本已经运行的时间，单位为秒
-$IMOUT        如果$TMOUT环境变量被设置为一个非零的时间值，在超时后，shell提示符将会超时，这会引起一个logout
-$
+$TMOUT        如果$TMOUT环境变量被设置为一个非零的时间值，在超时后，shell提示符将会超时，这会引起一个logout
+$UID        当前用户ID号，在/etc/passwd中记录
 $
 $
 $
