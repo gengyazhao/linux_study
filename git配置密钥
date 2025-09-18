@@ -1,0 +1,13 @@
+1.本地安装好git；
+
+2.桌面右键 Git Bash Here 打开git命令行；
+
+3.ssh-keygen -t rsa -C "www@xxx.com"   （全部按enter）；
+
+4.cd ~/.ssh   （如果没有执行第三步，则不会有这个文件夹）；
+
+5.cat id_rsa.pub     在命令行打开这个文件，会直接输出密钥；
+
+6.复制，打开github   ，点自己头像 >> settings >> SSH and GPG keys >>New SSH key 
+
+7. titile  随便写。  key里    粘贴第六步的内容；完成。
