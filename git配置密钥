@@ -11,3 +11,42 @@
 6.复制，打开github   ，点自己头像 >> settings >> SSH and GPG keys >>New SSH key 
 
 7. titile  随便写。  key里    粘贴第六步的内容；完成。
+
+
+
+
+$ cd /d/github
+
+$ git init
+Initialized empty Git repository in D:/github/.git/
+
+$ git config --global user.name "gengyazhao"
+
+$ git config --global user.email "171613398@qq.com"
+
+$ ssh-keygen -t rsa -C "171613398@qq.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/.ssh/id_rsa.
+Your public key has been saved in /c/Users/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:dFpWNgm95Jo4tnzZniYaa3gtc4r/iOTnMzQ4XIVlcNs 1716133985@qq.com
+The key's randomart image is:
++---[RSA 2048]----+
+|        .+=o+.   |
+|        .o.=+.   |
+|        ..=oE.   |
+|       ..=  o    |
+|     . oS. o     |
+|      + * o      |
+|      .*.= o     |
+|     o.o@+* o.   |
+|      +*B@.+o    |
++----[SHA256]-----+
+
+$ cd ~/.ssh
+
+$ cat id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClQSlPWx2RXLO9XRYx2WLl8U9Ef2B2y5CfS3WySB+pvYZEVv4z8hhyCBg6z154b9e1S+/ILPCypNpcJSc2dlRHtEOtMKWoBEUWNcMy32fiIkIYhutcVClEnWGjN9OdQ4a4NZknLYrCK7SH8hzX1n9UCcCPVDjjvToSqkqN8yGJSmQdZ6OWEh62G/eIuEPSSMGtgQOmUVbngkTcdIDd8k5UXhvBq8K5UhvXrtKug/jE9ELPrRMENZSKBPLwFfGHQn0QrOM68ceCtxGwFi016VzRaYUo0r2VjdGUTFz+o5lyefJJLOLYWChE/rNciEA1EAkZY/VAjfhAzly45X0HlG7B 1716133985@qq.com
