@@ -1,0 +1,63 @@
+因为Git是分布式版本控制系统，所以需要填写用户名和邮箱作为一个标识。
+注意：git config  --global 参数，有了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然你也可以对某个仓库指定的不同的用户名和邮箱。
+
+g84114734@DESKTOP-2CM3IFR MINGW64 /d/00开户/2020-12-15 (master)
+$ git config --global user.name "gyz"
+
+g84114734@DESKTOP-2CM3IFR MINGW64 /d/00开户/2020-12-15 (master)
+$ git config --global user.email "gyz@qq.com"
+
+
+一：创建版本库。
+什么是版本库？版本库又名仓库，英文名repository,你可以简单的理解一个目录，这个目录里面的所有文件都可以被Git管理起来，
+每个文件的修改，删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻还可以将文件”还原”。
+所以创建一个版本库也非常简单，如下我是D盘 –> www下 目录下新建一个testgit版本库。
+
+pwd 命令是用于显示当前的目录。
+1. 通过命令 git init 把这个目录变成git可以管理的仓库，如下：
+这时候你当前testgit目录下会多了一个.git的目录，
+这个目录是Git来跟踪管理版本的，没事千万不要手动乱改这个目录里面的文件，否则，会把git仓库给破坏了。
+
+cd /d/00开户/2020-12-15/
+git init
+
+将d:/00开户/2020-12-15/设置为主版本库repository
+
+
+2. 把文件添加到版本库中。
+首先要明确下，所有的版本控制系统，只能跟踪文本文件的改动，比如txt文件，网页，所有程序的代码等，
+Git也不列外，版本控制系统可以告诉你每次的改动，但是图片，视频这些二进制文件，虽能也能由版本控制系统管理，
+但没法跟踪文件的变化，只能把二进制文件每次改动串起来，也就是知道图片从1kb变成2kb，但是到底改了啥，版本控制也不知道。
+
+g84114734@DESKTOP-2CM3IFR MINGW64 /d/00开户/2020-12-15 (master)
+$ git add readme.txt
+fatal: pathspec 'readme.txt' did not match any files
+创建readme.txt即可
+
+
+g84114734@DESKTOP-2CM3IFR MINGW64 /d/00开户/2020-12-15 (master)
+$ touch ./readme.txt
+
+g84114734@DESKTOP-2CM3IFR MINGW64 /d/00开户/2020-12-15 (master)
+$ git add readme.txt
+
+g84114734@DESKTOP-2CM3IFR MINGW64 /d/00开户/2020-12-15 (master)
+$ git commit
+
+
+当前的版本回退到上一个版本
+git reset  --hard HEAD^
+
+回退到上上个版本
+git reset  --hard HEAD^^
+
+如果要回退到前100个版本
+git reset  --hard HEAD~100
+
+回退到最新的版本
+如下命令即可获取到版本号：git reflog
+git reset  --hard 版本号
+
+将本地仓库推送到GitHub仓库
+git remote add origin https：//github.com/gyz/APITest.git
+
