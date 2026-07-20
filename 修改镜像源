@@ -1,0 +1,7 @@
+1、Ubuntu修改镜像源
+确认系统版本
+lsb_release -a
+
+备份原始镜像源文件sources.list
+find / -name sources.list
+cp /etc/apt/sources.list /etc/apt/sources.list.bak
