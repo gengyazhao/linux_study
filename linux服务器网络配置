@@ -32,8 +32,19 @@ Ubuntu 18 及以上版本使用 Netplan 来管理网络配置
 cd /etc/netplan
 ls
 #在/etc/netplan目录下的所有.yaml文件均视为网络配置文件，备份网络配置文件不可以.yaml结尾放到/ect/netplan目录下
-
-
+ cat /etc/netplan/00-installer-config.yaml
+network:
+  version: 2
+  ethernets:
+    ens33:
+      dhcp4: no
+      dhcp6: no
+      addresses: [192.168.8.123/24]
+      gateway4: 192.168.8.1
+      nameservers:
+        addresses: [8.8.8.8,114.144.114.114]
+netplan apply#应用网络配置
+#虚拟机网络设置：编辑——虚拟网络编辑器——VMnet信息（选择主机对应的网卡）
 在linux系统中，TCP/IP网络是通过若干个文本文件进行配置的。系统中常用和网络配置文件如下：
 /etc/sysconfig/network
 /etc/hosts
