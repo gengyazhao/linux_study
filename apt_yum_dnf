@@ -1,1 +1,47 @@
+yum（Yellowdog Updater Modified）是 Red Hat、CentOS、Fedora 等发行版使用的包管理工具,管理的是 .rpm 格式的软件包。
+apt和apt-get是基于 Debian 系列的包管理器，管理的是 .deb 格式的软件包
+Ubuntu是基于 Debian 的系统。
 
+yum 是 CentOS 5/6/7、RHEL 5/6/7 默认包管理器，依赖解析性能较差，复杂依赖场景易卡顿，目前官方已停止维护。
+从 CentOS 8、RHEL 8 及以上版本开始，系统默认采用继任工具 dnf；dnf 向下兼容绝大多数 yum 命令，使用习惯基本一致。
+dnf (Dandified YUM) 是新一代的 RPM 软件包管理器，用于基于 RPM 的 Linux 发行版（如 Fedora、RHEL 8+、CentOS 8+ 等）。它是 yum 的替代品，提供了更快的依赖解析、更现代的代码库和更好的性能。
+
+| apt命令 | 取代的命令 | 功能 |
+|----------------|----------------|------------------------|
+| apt install | apt-get install| 安装软件包 |
+| apt remove | apt-get remove | 移除软件包 |
+| apt purge | apt-get purge | 移除软件包及配置文件 |
+| apt update | apt-get update | 刷新存储库索引 |
+| apt upgrade | apt-get upgrade| 升级所有可升级的软件包 |
+| apt autoremove | apt-get autoremove | 自动删除不需要的包 |
+| apt full-upgrade | apt-get dist-upgrade | 在升级软件包时自动处理依赖关系 |
+| apt search | apt-cache search | 搜索应用程序 |
+| apt show | apt-cache show | 显示包的详细信息 |
+
+# 安装软件包
+dnf install
+# 重新安装软件包
+dnf reinstall
+# 更新软件包
+dnf update
+# 更新所有可更新的软件包
+dnf update
+# 删除软件包
+dnf remove
+# 删除不需要的依赖项
+dnf autoremove
+
+
+yum常用命令
+1. 列出所有可更新的软件清单命令：yum check-update
+2. 更新所有软件命令：yum update
+3. 仅安装指定的软件命令：yum install <package_name>
+4. 仅更新指定的软件命令：yum update <package_name>
+5. 列出所有可安裝的软件清单命令：yum list
+6. 删除软件包命令：yum remove <package_name>
+7. 查找软件包命令：yum search <keyword>
+8. 清除缓存命令:
+yum clean packages: 清除缓存目录下的软件包
+yum clean headers: 清除缓存目录下的 headers
+yum clean oldheaders: 清除缓存目录下旧的 headers
+yum clean, yum clean all (= yum clean packages; yum clean oldheaders) :清除缓存目录下的软件包及旧的 headers
